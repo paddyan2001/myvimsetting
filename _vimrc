@@ -367,3 +367,7 @@ func! CompileRunGcc()
         exec "!chrome %.html &"
     endif
 endfunc
+"==========================================
+"自动格式化设置 autopepe8
+"==========================================
+let g:autopep8_disable_show_diff=1

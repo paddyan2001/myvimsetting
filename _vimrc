@@ -14,6 +14,11 @@ let g:jedi#completions_command = "<leader>v"
 let g:jedi#rename_command = "<leader>r"
 autocmd FileType python setlocal completeopt-=preview
 let g:jedi#show_call_signatures = "0"
+" =========================================
+" vim-indent-guides…Ë÷√
+" =========================================
+""let g:indent_guides_guide_size = 2
+let g:indent_guides_enable_on_vim_startup = 1
 "==========================================
 " General Settings ª˘¥°…Ë÷√
 "==========================================

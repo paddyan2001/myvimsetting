@@ -13,6 +13,7 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<leader>v"
 let g:jedi#rename_command = "<leader>r"
 autocmd FileType python setlocal completeopt-=preview
+let g:jedi#show_call_signatures = "0"
 "==========================================
 " General Settings 基础设置
 "==========================================
@@ -148,19 +149,6 @@ inoremap ;; <Esc>
 " F1 - F6 设置
 nnoremap <F1> <Esc>
 inoremap <F1> <Esc>
-" F2 行号开关，用于鼠标复制代码用
-" 为方便复制，用<F2>开启/关闭行号显示:
-function! HideNumber()
-  if(&relativenumber == &number)
-    set relativenumber! number!
-  elseif(&number)
-    set number!
-  else
-    set relativenumber!
-  endif
-  set number?
-endfunc
-nnoremap <F2> :call HideNumber()<CR>
 " F3 显示可打印字符开关
 nnoremap <F3> :set list! list?<CR>
 " F4 换行开关
@@ -237,12 +225,12 @@ nnoremap q :w<CR>
 nnoremap U <C-r>
 
 " 保存python文件时删除多余空格
-fun! <SID>StripTrailingWhitespaces()
+function <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
     %s/\s\+$//e
     call cursor(l, c)
-endfun
+endfunction
 autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 "==========================================
@@ -284,13 +272,13 @@ inoremap { {}<LEFT>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 "设置跳出自动补全的括号
-func SkipPair()  
+function SkipPair()  
     if getline('.')[col('.') - 1] == ')' || getline('.')[col('.') - 1] == ']' || getline('.')[col('.') - 1] == '"' || getline('.')[col('.') - 1] == "'" || getline('.')[col('.') - 1] == '}'  
         return "\<ESC>la"  
     else  
         return ")"  
     endif  
-endfunc  
+endfunction
 " 将右括号绑定为跳出括号  
 inoremap ) <c-r>=SkipPair()<CR>
 
@@ -310,7 +298,7 @@ set foldlevel=99
 " 代码折叠自定义快捷键 <leader>zz
 let g:FoldMethod = 0
 map <leader>zz :call ToggleFold()<cr>
-fun! ToggleFold()
+function ToggleFold()
     if g:FoldMethod == 0
         exe "normal! zM"
         let g:FoldMethod = 1
@@ -318,7 +306,7 @@ fun! ToggleFold()
         exe "normal! zR"
         let g:FoldMethod = 0
     endif
-endfun
+endfunction
 
 "==========================================
 "切换tab
@@ -342,7 +330,7 @@ map <Leader>sa ggVG
 "自动运行
 "==========================================
 map <F5> :call CompileRunGcc()<CR>
-func! CompileRunGcc()
+function CompileRunGcc()
     exec "w"
     if &filetype == 'c'
         exec "!g++ % -o %<"
@@ -366,7 +354,7 @@ func! CompileRunGcc()
         exec "!~/.vim/markdown.pl % > %.html &"
         exec "!chrome %.html &"
     endif
-endfunc
+endfunction
 "==========================================
 "自动格式化设置 autopepe8
 "==========================================

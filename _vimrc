@@ -174,12 +174,20 @@ cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
+"插入模式下定义退格键
+inoremap <C-BS> <C-w>
+inoremap <S-BS> <C-u>
+
+"插入模式下定义删除键
+inoremap <S-Del> <Esc><right>d$
+
+"插入模式下定义回车键
+inoremap <S-CR> <Esc>o
+inoremap <C-CR> <Esc>o<BS>
 
 " 搜索相关
 map <space> /
 
-"定义回车键
-inoremap <C-CR> <Esc>o
 " Keep search pattern at the center of the screen.
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
@@ -193,10 +201,10 @@ nnoremap <silent> g* g*zz
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
 " 使用方向键切换激活窗口
-noremap <left> <C-w>h
-noremap <right> <C-w>l
-noremap <up> <C-w>k
-noremap <down> <C-w>j
+noremap <C-left> <C-w>h
+noremap <C-right> <C-w>l
+noremap <C-up> <C-w>k
+noremap <C-down> <C-w>j
 
 " Toggles between the active and last active tab "
 " The first tab is always 1 "

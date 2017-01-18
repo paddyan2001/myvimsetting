@@ -308,9 +308,9 @@ set foldenable
 " marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
 set foldmethod=indent
 set foldlevel=99
-" 代码折叠自定义快捷键 <leader>zz
+" 代码折叠自定义快捷键 <leader>z
 let g:FoldMethod = 0
-map <leader>zz :call ToggleFold()<cr>
+map <leader>z :call ToggleFold()<cr>
 function ToggleFold()
     if g:FoldMethod == 0
         exe "normal! zM"

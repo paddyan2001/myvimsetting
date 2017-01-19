@@ -12,7 +12,7 @@ silent function! WINDOWS()
 endfunction
 if !WINDOWS()
     cd ~/code
-    set guifont=\12
+    set guifont=Monaco\12
 endif
 if WINDOWS()
     "默认工作文件夹

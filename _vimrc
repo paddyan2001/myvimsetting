@@ -1,5 +1,5 @@
 " =========================================
-" »·¾³ÉèÖÃ
+" ç¯å¢ƒè®¾ç½®
 " =========================================
 silent function! OSX()
     return has('macunix')
@@ -12,19 +12,22 @@ silent function! WINDOWS()
 endfunction
 if !WINDOWS()
     cd ~/code
+    set guifont=\12
 endif
 if WINDOWS()
-    "Ä¬ÈÏ¹¤×÷ÎÄ¼ş¼Ğ
+    "é»˜è®¤å·¥ä½œæ–‡ä»¶å¤¹
     cd d:/code
-    "ÉèÖÃ×ÖÌå
+    "è®¾ç½®å­—ä½“
     set guifont=Consolas:h11
 endif
+" è‡ªåŠ¨åˆ‡æ¢åˆ°æ–‡ä»¶å½“å‰ç›®å½•
+set autochdir
 " =========================================
-" pathogenÉèÖÃ
+" pathogenè®¾ç½®
 " =========================================
 execute pathogen#infect()
 " =========================================
-" jedi-vimÉèÖÃ
+" jedi-vimè®¾ç½®
 " =========================================
 let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
@@ -36,132 +39,134 @@ let g:jedi#rename_command = "<leader>r"
 autocmd FileType python setlocal completeopt-=preview
 let g:jedi#show_call_signatures = "0"
 " =========================================
-" vim-indent-guidesÉèÖÃ
+" vim-indent-guidesè®¾ç½®
 " =========================================
 ""let g:indent_guides_guide_size = 2
 let g:indent_guides_enable_on_vim_startup = 1
 "==========================================
-" General Settings »ù´¡ÉèÖÃ
+" General Settings åŸºç¡€è®¾ç½®
 "==========================================
-"½çÃæÉèÖÃ
-set guioptions-=m   " ¹Ø±Õ²Ëµ¥À¸
-set guioptions-=T    " ¹Ø±Õ¹¤¾ßÀ¸
-"set guioptions-=l   " ¹Ø±Õ×ó±ß¹ö¶¯Ìõ
-"set guioptions-=L   " ¹Ø±Õ´¹Ö±·Ö¸ô´°¿Ú×ó±ß¹ö¶¯Ìõ
-"set guioptions-=r   " ¹Ø±ÕÓÒ±ß¹ö¶¯Ìõ
-"set guioptions-=R   " ¹Ø±Õ´¹Ö±·Ö¸ô´°¿ÚÓÒ±ß¹ö¶¯Ìõ
-" ¿ªÆôÓï·¨¸ßÁÁ
+"ç•Œé¢è®¾ç½®
+if has("gui_running") 
+    set guioptions-=m   " å…³é—­èœå•æ 
+    set guioptions-=T    " å…³é—­å·¥å…·æ 
+    set guioptions-=l   " å…³é—­å·¦è¾¹æ»šåŠ¨æ¡
+    set guioptions-=L   " å…³é—­å‚ç›´åˆ†éš”çª—å£å·¦è¾¹æ»šåŠ¨æ¡
+    set guioptions-=r   " å…³é—­å³è¾¹æ»šåŠ¨æ¡
+    set guioptions-=R   " å…³é—­å‚ç›´åˆ†éš”çª—å£å³è¾¹æ»šåŠ¨æ¡
+endif
+" å¼€å¯è¯­æ³•é«˜äº®
 syntax on
-" history´æ´¢ÈİÁ¿
+" historyå­˜å‚¨å®¹é‡
 set history=500
-" ¼ì²âÎÄ¼şÀàĞÍ
+" æ£€æµ‹æ–‡ä»¶ç±»å‹
 filetype on
-" Õë¶Ô²»Í¬µÄÎÄ¼şÀàĞÍ²ÉÓÃ²»Í¬µÄËõ½ø¸ñÊ½
+" é’ˆå¯¹ä¸åŒçš„æ–‡ä»¶ç±»å‹é‡‡ç”¨ä¸åŒçš„ç¼©è¿›æ ¼å¼
 filetype indent on
-" ÔÊĞí²å¼ş
+" å…è®¸æ’ä»¶
 filetype plugin on
-" Æô¶¯×Ô¶¯²¹È«
+" å¯åŠ¨è‡ªåŠ¨è¡¥å…¨
 filetype plugin indent on
-" ÎÄ¼şĞŞ¸ÄÖ®ºó×Ô¶¯ÔØÈë
+" æ–‡ä»¶ä¿®æ”¹ä¹‹åè‡ªåŠ¨è½½å…¥
 set autoread
-" Æô¶¯µÄÊ±ºò²»ÏÔÊ¾ÄÇ¸öÔ®ÖúÎÚ¸É´ï¶ùÍ¯µÄÌáÊ¾
+" å¯åŠ¨çš„æ—¶å€™ä¸æ˜¾ç¤ºé‚£ä¸ªæ´åŠ©ä¹Œå¹²è¾¾å„¿ç«¥çš„æç¤º
 set shortmess=atI
-" È¡Ïû±¸·İ¡£ ÊÓÇé¿ö×Ô¼º¸Ä
+" å–æ¶ˆå¤‡ä»½ã€‚ è§†æƒ…å†µè‡ªå·±æ”¹
 set nobackup
-" ¹Ø±Õ½»»»ÎÄ¼ş
+" å…³é—­äº¤æ¢æ–‡ä»¶
 set noswapfile
-" ÆôÓÃÊó±ê
+" å¯ç”¨é¼ æ ‡
 set mouse=a
 " Hide the mouse cursor while typing
 set mousehide
-" È¥µôÊäÈë´íÎóµÄÌáÊ¾ÉùÒô
+" å»æ‰è¾“å…¥é”™è¯¯çš„æç¤ºå£°éŸ³
 set novisualbell
 set noerrorbells
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=h,l
-" ÏÔÊ¾µ±Ç°µÄĞĞºÅÁĞºÅ
+" æ˜¾ç¤ºå½“å‰çš„è¡Œå·åˆ—å·
 set ruler
-" ÔÚ×´Ì¬À¸ÏÔÊ¾ÕıÔÚÊäÈëµÄÃüÁî
+" åœ¨çŠ¶æ€æ æ˜¾ç¤ºæ­£åœ¨è¾“å…¥çš„å‘½ä»¤
 set showcmd
-" ×óÏÂ½ÇÏÔÊ¾µ±Ç°vimÄ£Ê½
+" å·¦ä¸‹è§’æ˜¾ç¤ºå½“å‰vimæ¨¡å¼
 set showmode
-" ÔÚÉÏÏÂÒÆ¶¯¹â±êÊ±£¬¹â±êµÄÉÏ·½»òÏÂ·½ÖÁÉÙ»á±£ÁôÏÔÊ¾µÄĞĞÊı
+" åœ¨ä¸Šä¸‹ç§»åŠ¨å…‰æ ‡æ—¶ï¼Œå…‰æ ‡çš„ä¸Šæ–¹æˆ–ä¸‹æ–¹è‡³å°‘ä¼šä¿ç•™æ˜¾ç¤ºçš„è¡Œæ•°
 set scrolloff=5
-" ÃüÁîĞĞ£¨ÔÚ×´Ì¬ĞĞÏÂ£©µÄ¸ß¶È£¬Ä¬ÈÏÎª1£¬ÕâÀïÊÇ2
+" å‘½ä»¤è¡Œï¼ˆåœ¨çŠ¶æ€è¡Œä¸‹ï¼‰çš„é«˜åº¦ï¼Œé»˜è®¤ä¸º1ï¼Œè¿™é‡Œæ˜¯2
 set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 " Always show the status line - use 2 lines for the status bar
-set laststatus=1
-" ÏÔÊ¾ĞĞºÅ
+set laststatus=2
+" æ˜¾ç¤ºè¡Œå·
 set number
-" È¡Ïû»»ĞĞ
+" å–æ¶ˆæ¢è¡Œ
 set nowrap
-" À¨ºÅÅä¶ÔÇé¿ö, Ìø×ª²¢¸ßÁÁÒ»ÏÂÆ¥ÅäµÄÀ¨ºÅ
+" æ‹¬å·é…å¯¹æƒ…å†µ, è·³è½¬å¹¶é«˜äº®ä¸€ä¸‹åŒ¹é…çš„æ‹¬å·
 set showmatch
-" ÉèÖÃÎÄÄÚÖÇÄÜËÑË÷ÌáÊ¾
-" ¸ßÁÁsearchÃüÖĞµÄÎÄ±¾
+" è®¾ç½®æ–‡å†…æ™ºèƒ½æœç´¢æç¤º
+" é«˜äº®searchå‘½ä¸­çš„æ–‡æœ¬
 set hlsearch
-" ´ò¿ªÔöÁ¿ËÑË÷Ä£Ê½,Ëæ×Å¼üÈë¼´Ê±ËÑË÷
+" æ‰“å¼€å¢é‡æœç´¢æ¨¡å¼,éšç€é”®å…¥å³æ—¶æœç´¢
 set incsearch
-" ËÑË÷Ê±ºöÂÔ´óĞ¡Ğ´
+" æœç´¢æ—¶å¿½ç•¥å¤§å°å†™
 set ignorecase
-" ÓĞÒ»¸ö»òÒÔÉÏ´óĞ´×ÖÄ¸Ê±ÈÔ´óĞ¡Ğ´Ãô¸Ğ
+" æœ‰ä¸€ä¸ªæˆ–ä»¥ä¸Šå¤§å†™å­—æ¯æ—¶ä»å¤§å°å†™æ•æ„Ÿ
 set smartcase
-" ´úÂëÕÛµş
+" ä»£ç æŠ˜å 
 set foldenable
-" Ëõ½øÅäÖÃ
+" ç¼©è¿›é…ç½®
 " Smart indent
 set smartindent
-" ´ò¿ª×Ô¶¯Ëõ½ø
+" æ‰“å¼€è‡ªåŠ¨ç¼©è¿›
 set autoindent
-" tabÏà¹Ø±ä¸ü
-" ÉèÖÃTab¼üµÄ¿í¶È        [µÈÍ¬µÄ¿Õ¸ñ¸öÊı]
+" tabç›¸å…³å˜æ›´
+" è®¾ç½®Tabé”®çš„å®½åº¦        [ç­‰åŒçš„ç©ºæ ¼ä¸ªæ•°]
 set tabstop=4
-" Ã¿Ò»´ÎËõ½ø¶ÔÓ¦µÄ¿Õ¸ñÊı
+" æ¯ä¸€æ¬¡ç¼©è¿›å¯¹åº”çš„ç©ºæ ¼æ•°
 set shiftwidth=4
-" °´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô 4 ¸ö¿Õ¸ñ
+" æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰ 4 ä¸ªç©ºæ ¼
 set softtabstop=4
-" insert tabs on the start of a line according to shiftwidth, not tabstop °´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô 4 ¸ö¿Õ¸ñ
+" insert tabs on the start of a line according to shiftwidth, not tabstop æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰ 4 ä¸ªç©ºæ ¼
 set smarttab
-" ½«Tab×Ô¶¯×ª»¯³É¿Õ¸ñ[ĞèÒªÊäÈëÕæÕıµÄTab¼üÊ±£¬Ê¹ÓÃ Ctrl+V + Tab]
+" å°†Tabè‡ªåŠ¨è½¬åŒ–æˆç©ºæ ¼[éœ€è¦è¾“å…¥çœŸæ­£çš„Tabé”®æ—¶ï¼Œä½¿ç”¨ Ctrl+V + Tab]
 set expandtab
-" Ëõ½øÊ±£¬È¡Õû use multiple of shiftwidth when indenting with '<' and '>'
+" ç¼©è¿›æ—¶ï¼Œå–æ•´ use multiple of shiftwidth when indenting with '<' and '>'
 set shiftround
 " Automatically write a file when leaving a modified buffer
 set autowrite     
 "==========================================
-" FileEncode Settings ÎÄ¼ş±àÂë,¸ñÊ½
+" FileEncode Settings æ–‡ä»¶ç¼–ç ,æ ¼å¼
 "==========================================
-" ÉèÖÃĞÂÎÄ¼şµÄ±àÂëÎª UTF-8
+" è®¾ç½®æ–°æ–‡ä»¶çš„ç¼–ç ä¸º UTF-8
 set encoding=utf-8
-" ×Ô¶¯ÅĞ¶Ï±àÂëÊ±£¬ÒÀ´Î³¢ÊÔÒÔÏÂ±àÂë£º
+" è‡ªåŠ¨åˆ¤æ–­ç¼–ç æ—¶ï¼Œä¾æ¬¡å°è¯•ä»¥ä¸‹ç¼–ç ï¼š
 set fileencodings=utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-" ÏÂÃæÕâ¾äÖ»Ó°ÏìÆÕÍ¨Ä£Ê½ (·ÇÍ¼ĞÎ½çÃæ) ÏÂµÄ Vim
+" ä¸‹é¢è¿™å¥åªå½±å“æ™®é€šæ¨¡å¼ (éå›¾å½¢ç•Œé¢) ä¸‹çš„ Vim
 set termencoding=utf-8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
-" ÈçÓöUnicodeÖµ´óÓÚ255µÄÎÄ±¾£¬²»±ØµÈµ½¿Õ¸ñÔÙÕÛĞĞ
+" å¦‚é‡Unicodeå€¼å¤§äº255çš„æ–‡æœ¬ï¼Œä¸å¿…ç­‰åˆ°ç©ºæ ¼å†æŠ˜è¡Œ
 set formatoptions+=m
-" ºÏ²¢Á½ĞĞÖĞÎÄÊ±£¬²»ÔÚÖĞ¼ä¼Ó¿Õ¸ñ
+" åˆå¹¶ä¸¤è¡Œä¸­æ–‡æ—¶ï¼Œä¸åœ¨ä¸­é—´åŠ ç©ºæ ¼
 set formatoptions+=B
 "==========================================
-" others ÆäËüÉèÖÃ
+" others å…¶å®ƒè®¾ç½®
 "==========================================
-" ×Ô¶¯²¹È«ÅäÖÃ
-" ÈÃVimµÄ²¹È«²Ëµ¥ĞĞÎªÓëÒ»°ãIDEÒ»ÖÂ(²Î¿¼VimTip1228)
+" è‡ªåŠ¨è¡¥å…¨é…ç½®
+" è®©Vimçš„è¡¥å…¨èœå•è¡Œä¸ºä¸ä¸€èˆ¬IDEä¸€è‡´(å‚è€ƒVimTip1228)
 set completeopt=longest,menu
-" ÔöÇ¿Ä£Ê½ÖĞµÄÃüÁîĞĞ×Ô¶¯Íê³É²Ù×÷
+" å¢å¼ºæ¨¡å¼ä¸­çš„å‘½ä»¤è¡Œè‡ªåŠ¨å®Œæˆæ“ä½œ
 set wildmenu
-" ´ò¿ª×Ô¶¯¶¨Î»µ½×îºó±à¼­µÄÎ»ÖÃ, ĞèÒªÈ·ÈÏ .viminfo µ±Ç°ÓÃ»§¿ÉĞ´
+" æ‰“å¼€è‡ªåŠ¨å®šä½åˆ°æœ€åç¼–è¾‘çš„ä½ç½®, éœ€è¦ç¡®è®¤ .viminfo å½“å‰ç”¨æˆ·å¯å†™
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 "==========================================
-" HotKey Settings  ×Ô¶¨Òå¿ì½İ¼üÉèÖÃ
+" HotKey Settings  è‡ªå®šä¹‰å¿«æ·é”®è®¾ç½®
 "==========================================
-" Ö÷Òª°´¼üÖØ¶¨Òå
+" ä¸»è¦æŒ‰é”®é‡å®šä¹‰
 "Treat long lines as break lines (useful when moving around in them)
-"se swapÖ®ºó£¬Í¬ÎïÀíĞĞÉÏÏßÖ±½ÓÌø
+"se swapä¹‹åï¼ŒåŒç‰©ç†è¡Œä¸Šçº¿ç›´æ¥è·³
 nnoremap k gk
 nnoremap gk k
 nnoremap j gj
@@ -170,41 +175,41 @@ nnoremap gj j
 inoremap <leader>\ <Esc>
 inoremap ;; <Esc>
 
-" F1 - F6 ÉèÖÃ
+" F1 - F6 è®¾ç½®
 nnoremap <F1> <Esc>
 inoremap <F1> <Esc>
-" F3 ÏÔÊ¾¿É´òÓ¡×Ö·û¿ª¹Ø
+" F3 æ˜¾ç¤ºå¯æ‰“å°å­—ç¬¦å¼€å…³
 nnoremap <F3> :set list! list?<CR>
-" F4 »»ĞĞ¿ª¹Ø
+" F4 æ¢è¡Œå¼€å…³
 nnoremap <F4> :set wrap! wrap?<CR>
-" F6 Óï·¨¿ª¹Ø£¬¹Ø±ÕÓï·¨¿ÉÒÔ¼Ó¿ì´óÎÄ¼şµÄÕ¹Ê¾
+" F6 è¯­æ³•å¼€å…³ï¼Œå…³é—­è¯­æ³•å¯ä»¥åŠ å¿«å¤§æ–‡ä»¶çš„å±•ç¤º
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 " Go to home and end using capitalized directions
 noremap H ^
 noremap L $
 
-" Map ; to : and save a million keystrokes ÓÃÓÚ¿ìËÙ½øÈëÃüÁîĞĞ
+" Map ; to : and save a million keystrokes ç”¨äºå¿«é€Ÿè¿›å…¥å‘½ä»¤è¡Œ
 nnoremap ; :
 
-" ÃüÁîĞĞÄ£Ê½ÔöÇ¿£¬ctrl - aµ½ĞĞÊ×£¬ -e µ½ĞĞÎ²
+" å‘½ä»¤è¡Œæ¨¡å¼å¢å¼ºï¼Œctrl - aåˆ°è¡Œé¦–ï¼Œ -e åˆ°è¡Œå°¾
 cnoremap <C-j> <t_kd>
 cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-"²åÈëÄ£Ê½ÏÂ¶¨ÒåÍË¸ñ¼ü
+"æ’å…¥æ¨¡å¼ä¸‹å®šä¹‰é€€æ ¼é”®
 inoremap <C-BS> <C-w>
 inoremap <S-BS> <C-u>
 
-"²åÈëÄ£Ê½ÏÂ¶¨ÒåÉ¾³ı¼ü
+"æ’å…¥æ¨¡å¼ä¸‹å®šä¹‰åˆ é™¤é”®
 inoremap <S-Del> <Esc><right>d$
 
-"²åÈëÄ£Ê½ÏÂ¶¨Òå»Ø³µ¼ü
+"æ’å…¥æ¨¡å¼ä¸‹å®šä¹‰å›è½¦é”®
 inoremap <S-CR> <Esc>o
 inoremap <C-CR> <Esc>o<BS>
 
-" ËÑË÷Ïà¹Ø
+" æœç´¢ç›¸å…³
 map <space> /
 
 " Keep search pattern at the center of the screen.
@@ -214,12 +219,12 @@ nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
-" tab/bufferÏà¹Ø
+" tab/bufferç›¸å…³
 
-" ÇĞ»»Ç°ºóbuffer
+" åˆ‡æ¢å‰åbuffer
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
-" Ê¹ÓÃ·½Ïò¼üÇĞ»»¼¤»î´°¿Ú
+" ä½¿ç”¨æ–¹å‘é”®åˆ‡æ¢æ¿€æ´»çª—å£
 noremap <C-left> <C-w>h
 noremap <C-right> <C-w>l
 noremap <C-up> <C-w>k
@@ -234,11 +239,11 @@ let g:last_active_tab = 1
 nnoremap <silent> <leader>tt :execute 'tabnext ' . g:last_active_tab<cr>
 autocmd TabLeave * let g:last_active_tab = tabpagenr()
 
-" ĞÂ½¨tab  Ctrl+t
+" æ–°å»ºtab  Ctrl+t
 nnoremap <C-t>     :tabnew<CR>
 inoremap <C-t>     <Esc>:tabnew<CR>
 
-" ¹ö¶¯Speed up scrolling of the viewport slightly
+" æ»šåŠ¨Speed up scrolling of the viewport slightly
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
@@ -249,14 +254,14 @@ nnoremap <leader>q :q!<CR>
 nnoremap Q :q<CR>
 nnoremap q :w<CR>
 
-" ½»»» ' `, Ê¹µÃ¿ÉÒÔ¿ìËÙÊ¹ÓÃ'Ìøµ½markedÎ»ÖÃ
+" äº¤æ¢ ' `, ä½¿å¾—å¯ä»¥å¿«é€Ÿä½¿ç”¨'è·³åˆ°markedä½ç½®
 "nnoremap ' `
 "nnoremap ` '
 
 " remap U to <C-r> for easier redo
 nnoremap U <C-r>
 
-" ±£´æpythonÎÄ¼şÊ±É¾³ı¶àÓà¿Õ¸ñ
+" ä¿å­˜pythonæ–‡ä»¶æ—¶åˆ é™¤å¤šä½™ç©ºæ ¼
 function <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
@@ -266,20 +271,20 @@ endfunction
 autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 "==========================================
-" Theme Settings  Ö÷ÌâÉèÖÃ
+" Theme Settings  ä¸»é¢˜è®¾ç½®
 "==========================================
 
-" themeÖ÷Ìâ
+" themeä¸»é¢˜
 "colorscheme onedark
 "colorscheme jellybeans
 "colorscheme desert
 colorscheme molokai
-"ÉèÖÃ±ê¼ÇÒ»ÁĞµÄ±³¾°ÑÕÉ«ºÍÊı×ÖÒ»ĞĞÑÕÉ«Ò»ÖÂ
+"è®¾ç½®æ ‡è®°ä¸€åˆ—çš„èƒŒæ™¯é¢œè‰²å’Œæ•°å­—ä¸€è¡Œé¢œè‰²ä¸€è‡´
 "hi! link SignColumn   LineNr
 "hi! link ShowMarksHLl DiffAdd
 "hi! link ShowMarksHLu DiffChange
 "
-"" for error highlight£¬·ÀÖ¹´íÎóÕûĞĞ±êºìµ¼ÖÂ¿´²»Çå
+"" for error highlightï¼Œé˜²æ­¢é”™è¯¯æ•´è¡Œæ ‡çº¢å¯¼è‡´çœ‹ä¸æ¸…
 "highlight clear SpellBad
 "highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
 "highlight clear SpellCap
@@ -290,19 +295,19 @@ colorscheme molokai
 "highlight SpellLocal term=underline cterm=underline
 "
 "
-"½â¾ö²Ëµ¥ÂÒÂë
+"è§£å†³èœå•ä¹±ç 
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 "==========================================
-"À¨ºÅ²¹È«
+"æ‹¬å·è¡¥å…¨
 "==========================================
-" ²åÈëÆ¥ÅäÀ¨ºÅ
+" æ’å…¥åŒ¹é…æ‹¬å·
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap { {}<LEFT>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
-"ÉèÖÃÌø³ö×Ô¶¯²¹È«µÄÀ¨ºÅ
+"è®¾ç½®è·³å‡ºè‡ªåŠ¨è¡¥å…¨çš„æ‹¬å·
 function SkipPair()  
     if getline('.')[col('.') - 1] == ')' || getline('.')[col('.') - 1] == ']' || getline('.')[col('.') - 1] == '"' || getline('.')[col('.') - 1] == "'" || getline('.')[col('.') - 1] == '}'  
         return "\<ESC>la"  
@@ -310,23 +315,23 @@ function SkipPair()
         return ")"  
     endif  
 endfunction
-" ½«ÓÒÀ¨ºÅ°ó¶¨ÎªÌø³öÀ¨ºÅ  
+" å°†å³æ‹¬å·ç»‘å®šä¸ºè·³å‡ºæ‹¬å·  
 inoremap ) <c-r>=SkipPair()<CR>
 
 "==========================================
-"" ´úÂëÕÛµş
+"" ä»£ç æŠ˜å 
 "==========================================
 set foldenable
-" ÕÛµş·½·¨
-" manual    ÊÖ¹¤ÕÛµş
-" indent    Ê¹ÓÃËõ½ø±íÊ¾ÕÛµş
-" expr      Ê¹ÓÃ±í´ïÊ½¶¨ÒåÕÛµş
-" syntax    Ê¹ÓÃÓï·¨¶¨ÒåÕÛµş
-" diff      ¶ÔÃ»ÓĞ¸ü¸ÄµÄÎÄ±¾½øĞĞÕÛµş
-" marker    Ê¹ÓÃ±ê¼Ç½øĞĞÕÛµş, Ä¬ÈÏ±ê¼ÇÊÇ {{{ ºÍ }}}
+" æŠ˜å æ–¹æ³•
+" manual    æ‰‹å·¥æŠ˜å 
+" indent    ä½¿ç”¨ç¼©è¿›è¡¨ç¤ºæŠ˜å 
+" expr      ä½¿ç”¨è¡¨è¾¾å¼å®šä¹‰æŠ˜å 
+" syntax    ä½¿ç”¨è¯­æ³•å®šä¹‰æŠ˜å 
+" diff      å¯¹æ²¡æœ‰æ›´æ”¹çš„æ–‡æœ¬è¿›è¡ŒæŠ˜å 
+" marker    ä½¿ç”¨æ ‡è®°è¿›è¡ŒæŠ˜å , é»˜è®¤æ ‡è®°æ˜¯ {{{ å’Œ }}}
 set foldmethod=indent
 set foldlevel=99
-" ´úÂëÕÛµş×Ô¶¨Òå¿ì½İ¼ü <leader>z
+" ä»£ç æŠ˜å è‡ªå®šä¹‰å¿«æ·é”® <leader>z
 let g:FoldMethod = 0
 map <leader>z :call ToggleFold()<cr>
 function ToggleFold()
@@ -340,9 +345,9 @@ function ToggleFold()
 endfunction
 
 "==========================================
-"ÇĞ»»tab
+"åˆ‡æ¢tab
 "==========================================
-" normalÄ£Ê½ÏÂÇĞ»»µ½È·ÇĞµÄtab
+" normalæ¨¡å¼ä¸‹åˆ‡æ¢åˆ°ç¡®åˆ‡çš„tab
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
@@ -354,11 +359,11 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
-"È«Ñ¡ select all
+"å…¨é€‰ select all
 map <Leader>sa ggVG
 
 "==========================================
-"×Ô¶¯ÔËĞĞ
+"è‡ªåŠ¨è¿è¡Œ
 "==========================================
 map <F5> :call CompileRunGcc()<CR>
 function CompileRunGcc()
@@ -387,6 +392,6 @@ function CompileRunGcc()
     endif
 endfunction
 "==========================================
-"×Ô¶¯¸ñÊ½»¯ÉèÖÃ autopepe8
+"è‡ªåŠ¨æ ¼å¼åŒ–è®¾ç½® autopepe8
 "==========================================
 let g:autopep8_disable_show_diff=1

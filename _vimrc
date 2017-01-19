@@ -93,9 +93,8 @@ set showcmd
 set showmode
 " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set scrolloff=5
-" 命令行（在状态行下）的高度，默认为1，这里是2
+" 状态栏设置
 set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
-" Always show the status line - use 2 lines for the status bar
 set laststatus=2
 " 显示行号
 set number

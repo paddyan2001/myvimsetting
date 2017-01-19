@@ -1,4 +1,25 @@
 " =========================================
+" 环境设置
+" =========================================
+silent function! OSX()
+    return has('macunix')
+endfunction
+silent function! LINUX()
+    return has('unix') && !has('macunix') && !has('win32unix')
+endfunction
+silent function! WINDOWS()
+    return  (has('win32') || has('win64'))
+endfunction
+if !WINDOWS()
+    cd ~/code
+endif
+if WINDOWS()
+    "默认工作文件夹
+    cd d:/code
+    "设置字体
+    set guifont=Consolas:h11
+endif
+" =========================================
 " pathogen设置
 " =========================================
 execute pathogen#infect()
@@ -22,8 +43,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 "==========================================
 " General Settings 基础设置
 "==========================================
-"默认工作文件夹
-cd d:/code
 "界面设置
 set guioptions-=m   " 关闭菜单栏
 set guioptions-=T    " 关闭工具栏
@@ -249,7 +268,6 @@ autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,pe
 "==========================================
 " Theme Settings  主题设置
 "==========================================
-set guifont=Consolas:h11
 
 " theme主题
 "colorscheme onedark

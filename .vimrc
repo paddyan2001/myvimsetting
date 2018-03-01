@@ -38,9 +38,8 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=5
-    "set guifont=Consolas:h14
-    set guifont=Fira_Code_Retina:h13
+    set linespace=8
+    set guifont=Fira_Code_Retina:h12 "Consolas Fira_Code_Retina
 endif
 if (g:iswindows)
     cd ~\OneDrive\Code\
@@ -87,9 +86,8 @@ highlight CursorLine term=NONE ctermbg=black
 
 "-------airline_setting------
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline_theme="molokai"
-let g:airline_theme="deus"
 let g:airline_powerline_fonts = 1
+let g:airline_theme="luna" "molokai or deus or luna
 "let g:airline#extensions#tabline#buffer_nr_show = 1
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'

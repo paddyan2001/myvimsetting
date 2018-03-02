@@ -42,6 +42,7 @@ if (g:iswindows && g:isgui)
     set guifont=Fira_Code_Retina:h12 "Consolas Fira_Code_Retina
 endif
 if (g:iswindows)
+    let g:completor_python_binary = 'C:\\Users\\11423\\Anaconda3\\python.exe'
     cd ~\OneDrive\Code\
 endif
 
@@ -99,7 +100,6 @@ vmap q <esc>
 nmap \q :q<CR>
 nmap \w :w<CR>
 nmap \v :tabedit ~/.vimrc<CR>
-nmap \vp :tabedit ~/.vim/plugins.vim<CR>
 nmap \b :bd<CR>
 nmap \B :bd!<CR>
 nmap \x :tabclose<CR>
@@ -126,7 +126,6 @@ set hlsearch
 set incsearch
 
 "-------sourcefiles------
-source ~/.vim/plugins.vim
 
 "-------autocomplete------
 set complete=.,w,b,u
@@ -152,3 +151,29 @@ augroup autosourcing
 	autocmd BufWritePost .vimrc source %
     autocmd FileType python nnoremap \f :0,$!yapf<CR>
 augroup END
+
+"-------PluginInstall------
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-vinegar'
+Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'w0rp/ale'
+Plugin 'maralla/completor.vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+"-------PluginInstall------

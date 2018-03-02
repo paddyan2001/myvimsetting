@@ -38,8 +38,8 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=8
-    set guifont=Fira_Code_Retina:h12 "Consolas Fira_Code_Retina
+    set linespace=5   "8 5
+    set guifont=Hack:h12 "Consolas Fira_Code_Retina
 endif
 if (g:iswindows)
     let g:completor_python_binary = '~/Python/Python36/python.exe'

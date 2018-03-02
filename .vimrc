@@ -22,7 +22,7 @@ set matchtime=2     "高亮括号时间是十分之n秒
 set scrolloff=3     "光标移动到buffer的顶部和底部时保持3行距离
 set nobackup        "禁止生成临时文件
 set noswapfile      "禁止生成交换文件
-set autowrite
+set autowriteall
 set modified
 let autosave=6
 
@@ -42,7 +42,7 @@ if (g:iswindows && g:isgui)
     set guifont=Fira_Code_Retina:h12 "Consolas Fira_Code_Retina
 endif
 if (g:iswindows)
-    let g:completor_python_binary = 'C:\\Users\\11423\\Anaconda3\\python.exe'
+    let g:completor_python_binary = '~/Anaconda3/python.exe'
     cd ~\OneDrive\Code\
 endif
 
@@ -134,13 +134,13 @@ set complete=.,w,b,u
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
-"Complete Options
+"complete Options
 set completeopt-=longest
 set completeopt+=menuone
 set completeopt-=menu
-if &completeopt !~# 'noinsert\|noselect'
-      set completeopt+=noselect
-endif
+"if &completeopt !~# 'noinsert\|noselect'
+"      set completeopt+=noselect
+"endif
 
 "-------autorun------
 autocmd FileType python map \r :w<cr>:exec "!py %"<cr>

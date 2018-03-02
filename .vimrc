@@ -42,7 +42,8 @@ if (g:iswindows && g:isgui)
     set guifont=Fira_Code_Retina:h12 "Consolas Fira_Code_Retina
 endif
 if (g:iswindows)
-    let g:completor_python_binary = '~/Anaconda3/python.exe'
+    let g:completor_python_binary = '~/Python/Python36/python.exe'
+    "let g:completor_python_binary = '~/Anaconda3/py.exe'
     cd ~\OneDrive\Code\
 endif
 
@@ -73,9 +74,8 @@ if (g:isgui==0)
 endif
 
 
-
 "-------visuallize------
-let g:ale_sign_column_always = 1
+"let g:ale_sign_column_always = 1
 let g:ale_sign_error = '->'
 let g:ale_sign_warning = '--'
 highlight VertSplit ctermbg=darkgrey ctermfg=darkgrey
@@ -94,6 +94,7 @@ let g:airline_theme="luna" "molokai or deus or luna
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 "let g:airline#extensions#tabline#formatter = 'default'
 
+
 "-------keymapping------
 nmap ; :
 vmap q <esc>
@@ -107,6 +108,7 @@ nmap <space> :nohlsearch<CR>
 nmap ] :bn<cr>
 nmap [ :bp<cr>
 
+
 "-------ale_setting------
 let g:ale_lint_on_save = 1
 "let g:ale_fixers = {'javascript': ['eslint'],}
@@ -115,17 +117,21 @@ let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 
+
 "-------split managerment------
 nmap <C-J> <C-W><C-J>
 nmap <C-K> <C-W><C-K>
 nmap <C-H> <C-W><C-H>
 nmap <C-L> <C-W><C-L>
 
+
 "-------search------
 set hlsearch
 set incsearch
 
+
 "-------sourcefiles------
+
 
 "-------autocomplete------
 set complete=.,w,b,u
@@ -135,15 +141,17 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 "complete Options
-set completeopt-=longest
-set completeopt+=menuone
-set completeopt-=menu
+"set completeopt-=longest
+"set completeopt+=menuone
+"set completeopt-=menu
 "if &completeopt !~# 'noinsert\|noselect'
 "      set completeopt+=noselect
 "endif
 
+
 "-------autorun------
 autocmd FileType python map \r :w<cr>:exec "!py %"<cr>
+
 
 "-------autocommands------
 augroup autosourcing
@@ -151,6 +159,7 @@ augroup autosourcing
 	autocmd BufWritePost .vimrc source %
     autocmd FileType python nnoremap \f :0,$!yapf<CR>
 augroup END
+
 
 "-------PluginInstall------
 filetype off                  " required

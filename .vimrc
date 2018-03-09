@@ -38,8 +38,9 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=5   "8 5
+    set linespace=8   "8 5
     set guifont=Hack:h12 "Consolas Fira_Code_Retina
+    set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
 endif
 if (g:iswindows)
     let g:completor_python_binary = '~/Python/Python36/python.exe'
@@ -51,7 +52,8 @@ endif
 if (g:iswindows==0)
     cd ~/code/
     set linespace=5
-    set guifont=Menlo:h15
+    set guifont=Hack:h16
+    "set guifont=Roboto\ Mono\ Medium\ for\ Powerline:h16
     let g:completor_python_binary = '/usr/local/bin/python'
 endif
 
@@ -90,7 +92,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme="luna" "molokai or deus or luna
 "let g:airline#extensions#tabline#buffer_nr_show = 1
-"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_sep = ''
+"let g:airline#extensions#tabline#right_sep = ''
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 "let g:airline#extensions#tabline#formatter = 'default'
 

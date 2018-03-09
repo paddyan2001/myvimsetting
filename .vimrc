@@ -43,8 +43,8 @@ if (g:iswindows && g:isgui)
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
 endif
 if (g:iswindows)
-    let g:completor_python_binary = '~/Python/Python36/python.exe'
-    "let g:completor_python_binary = '~/Anaconda3/py.exe'
+    "let g:completor_python_binary = '~/Python/Python36/python.exe' "notbook
+    let g:completor_python_binary = '~/Anaconda3/python.exe' "desktop
     cd ~\OneDrive\Code\
 endif
 
@@ -136,8 +136,10 @@ set incsearch
 "-------sourcefiles------
 
 
-"-------autocomplete------
+"-------autocomplete and completor setting------
 set complete=.,w,b,u
+let g:completor_completion_delay = 10
+let g:completor_auto_close_doc = 0
 
 "superTab
 let g:SuperTabDefaultCompletionType = "<c-n>"

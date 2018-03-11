@@ -38,13 +38,13 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=8   "8 5
+    set linespace=5   "8 5
     set guifont=Hack:h12 "Consolas Fira_Code_Retina
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
 endif
 if (g:iswindows)
-    "let g:completor_python_binary = '~/Python/Python36/python.exe' "notbook
-    let g:completor_python_binary = '~/Anaconda3/python.exe' "desktop
+    let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
+    "let g:completor_python_binary = '~/Anaconda3/python.exe' "desktop
     cd ~\OneDrive\Code\
 endif
 
@@ -102,10 +102,11 @@ let g:airline_theme="luna" "molokai or deus or luna
 nmap ; :
 vmap q <esc>
 nmap \q :q<CR>
+nmap \Q :q!<CR>
 nmap \w :w<CR>
+nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
-nmap \b :bd<CR>
-nmap \B :bd!<CR>
+nmap , :bd<CR>
 nmap \x :tabclose<CR>
 nmap <space> :nohlsearch<CR>
 nmap ] :bn<cr>
@@ -162,7 +163,7 @@ autocmd FileType python map \r :w<cr>:exec "!py %"<cr>
 augroup autosourcing
 	autocmd!
 	autocmd BufWritePost .vimrc source %
-    autocmd FileType python nnoremap \f :0,$!yapf<CR>
+    autocmd FileType python nnoremap \F :0,$!yapf<CR>
 augroup END
 
 
@@ -186,6 +187,7 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+Plugin 'Yggdroot/LeaderF'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

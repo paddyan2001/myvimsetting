@@ -38,13 +38,14 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=5   "8 5
-    set guifont=Hack:h12 "Consolas Fira_Code_Retina
+    set linespace=6   "6 5
+    set guifont=Hack:h11 "Consolas Fira_Code_Retina
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
+    autocmd GUIEnter * simalt ~x
 endif
 if (g:iswindows)
-    let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
-    "let g:completor_python_binary = '~/Anaconda3/python.exe' "desktop
+    "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
+    let g:completor_python_binary = '~/Anaconda3/python.exe' "desktop
     cd ~\OneDrive\Code\
 endif
 

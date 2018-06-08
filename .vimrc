@@ -38,14 +38,14 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=6   "6 5
-    set guifont=Hack:h11 "Consolas Fira_Code_Retina
+    set linespace=8 "6 5
+    set guifont=Hack:h12 "Consolas Fira_Code_Retina Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
-    autocmd GUIEnter * simalt ~x
+    "autocmd GUIEnter * simalt ~x
 endif
 if (g:iswindows)
     "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
-    let g:completor_python_binary = '~/Anaconda3/python.exe' "desktop
+    let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
     cd ~\OneDrive\Code\
 endif
 
@@ -61,18 +61,17 @@ endif
 "set for gui
 if (g:isgui)
     set background=dark
-    "colorscheme desert
-    "colorscheme atom-dark-256
-    colorscheme gruvbox
+    colorscheme gruvbox "desert
     set guioptions-=r
     set guioptions-=L
     set guioptions-=m
     set guioptions-=T
+    "set foldcolumn=1
+    "highlight foldcolumn guibg=bg
 endif
 
 "set for cterm
 if (g:isgui==0)
-    set t_CO=256
     colorscheme atom-dark-256
 endif
 
@@ -81,12 +80,12 @@ endif
 "let g:ale_sign_column_always = 1
 let g:ale_sign_error = '->'
 let g:ale_sign_warning = '--'
-highlight VertSplit ctermbg=darkgrey ctermfg=darkgrey
-highlight LineNr ctermfg=black
-highlight TabLineFill ctermfg=Black
-highlight TabLine ctermfg=grey ctermbg=black
+"highlight VertSplit ctermbg=darkgrey ctermfg=darkgrey
+"highlight LineNr ctermfg=black
+"highlight TabLineFill ctermfg=Black
+"highlight TabLine ctermfg=grey ctermbg=black
 highlight CursorLine term=NONE ctermbg=black
-
+highlight CursorColumn term=NONE ctermbg=black
 
 "-------airline_setting------
 let g:airline#extensions#tabline#enabled = 1
@@ -108,6 +107,7 @@ nmap \w :w<CR>
 nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
 nmap , :bd<CR>
+nmap \, :bd<CR>
 nmap \x :tabclose<CR>
 nmap <space> :nohlsearch<CR>
 nmap ] :bn<cr>
@@ -157,7 +157,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 
 "-------autorun------
-autocmd FileType python map \r :w<cr>:exec "!py %"<cr>
+autocmd FileType python map \r :w<cr>:exec "!python %"<cr>
 
 
 "-------autocommands------

@@ -41,7 +41,7 @@ if (g:iswindows && g:isgui)
     set linespace=8 "6 5
     set guifont=Hack:h12 "Consolas Fira_Code_Retina Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
-    "autocmd GUIEnter * simalt ~x
+    "autocmd GUIEnter * simalt ~x "启动最大化
 endif
 if (g:iswindows)
     "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
@@ -73,6 +73,12 @@ endif
 "set for cterm
 if (g:isgui==0)
     colorscheme atom-dark-256
+    highlight CursorColumn term=NONE ctermbg=black
+    highlight CursorLine term=NONE ctermbg=black
+    "highlight VertSplit ctermbg=darkgrey ctermfg=darkgrey
+    "highlight LineNr ctermfg=black
+    "highlight TabLineFill ctermfg=Black
+    "highlight TabLine ctermfg=grey ctermbg=black
 endif
 
 
@@ -80,22 +86,12 @@ endif
 "let g:ale_sign_column_always = 1
 let g:ale_sign_error = '->'
 let g:ale_sign_warning = '--'
-"highlight VertSplit ctermbg=darkgrey ctermfg=darkgrey
-"highlight LineNr ctermfg=black
-"highlight TabLineFill ctermfg=Black
-"highlight TabLine ctermfg=grey ctermbg=black
-highlight CursorLine term=NONE ctermbg=black
-highlight CursorColumn term=NONE ctermbg=black
+
 
 "-------airline_setting------
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme="luna" "molokai or deus or luna
-"let g:airline#extensions#tabline#buffer_nr_show = 1
-"let g:airline#extensions#tabline#left_sep = ''
-"let g:airline#extensions#tabline#right_sep = ''
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-"let g:airline#extensions#tabline#formatter = 'default'
 
 
 "-------keymapping------
@@ -115,12 +111,11 @@ nmap [ :bp<cr>
 
 
 "-------ale_setting------
-let g:ale_lint_on_save = 1
 "let g:ale_fixers = {'javascript': ['eslint'],}
 let g:ale_fixers = {'python': ['yapf'],}
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
+"let g:ale_fix_on_save = 1
+"let g:ale_lint_on_text_changed = 'never'
+"let g:ale_lint_on_enter = 0
 
 
 "-------split managerment------
@@ -135,12 +130,9 @@ set hlsearch
 set incsearch
 
 
-"-------sourcefiles------
-
-
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 10
+let g:completor_completion_delay = 0
 let g:completor_auto_close_doc = 0
 
 "superTab

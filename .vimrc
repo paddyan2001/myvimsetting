@@ -66,8 +66,6 @@ if (g:isgui)
     set guioptions-=L
     set guioptions-=m
     set guioptions-=T
-    "set foldcolumn=1
-    "highlight foldcolumn guibg=bg
 endif
 
 "set for cterm
@@ -80,12 +78,6 @@ if (g:isgui==0)
     "highlight TabLineFill ctermfg=Black
     "highlight TabLine ctermfg=grey ctermbg=black
 endif
-
-
-"-------visuallize------
-"let g:ale_sign_column_always = 1
-let g:ale_sign_error = '->'
-let g:ale_sign_warning = '--'
 
 
 "-------airline_setting------
@@ -103,19 +95,11 @@ nmap \w :w<CR>
 nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
 nmap , :bd<CR>
-nmap \, :bd<CR>
+nmap \, :bd!<CR>
 nmap \x :tabclose<CR>
 nmap <space> :nohlsearch<CR>
 nmap ] :bn<cr>
 nmap [ :bp<cr>
-
-
-"-------ale_setting------
-"let g:ale_fixers = {'javascript': ['eslint'],}
-let g:ale_fixers = {'python': ['yapf'],}
-"let g:ale_fix_on_save = 1
-"let g:ale_lint_on_text_changed = 'never'
-"let g:ale_lint_on_enter = 0
 
 
 "-------split managerment------
@@ -135,28 +119,27 @@ set complete=.,w,b,u
 let g:completor_completion_delay = 0
 let g:completor_auto_close_doc = 0
 
+
 "superTab
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
-"complete Options
-"set completeopt-=longest
-"set completeopt+=menuone
-"set completeopt-=menu
-"if &completeopt !~# 'noinsert\|noselect'
-"      set completeopt+=noselect
-"endif
-
 
 "-------autorun------
-autocmd FileType python map \r :w<cr>:exec "!python %"<cr>
+autocmd FileType python nmap <F5> :w<cr>:exec "!python %"<cr>
+map <F2> :call FormatCode()<CR>
+func! FormatCode()
+    exec "w"
+    if &filetype == 'python'
+        exec "!autopep8 --in-place --aggressive %"
+    endif
+endfunc
 
 
 "-------autocommands------
 augroup autosourcing
 	autocmd!
 	autocmd BufWritePost .vimrc source %
-    autocmd FileType python nnoremap \F :0,$!yapf<CR>
 augroup END
 
 
@@ -174,7 +157,7 @@ Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'w0rp/ale'
+"Plugin 'w0rp/ale'
 Plugin 'maralla/completor.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'

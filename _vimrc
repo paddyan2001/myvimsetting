@@ -128,8 +128,8 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 "-------autorun------
 autocmd FileType python nmap <F5> :w<cr>:exec "!python %"<cr>
 autocmd FileType python nmap \r :w<cr>:exec "!python %"<cr>
-map <F8> :call FormatCode()<CR>
-map \= :call FormatCode()<CR>
+nmap <F8> :call FormatCode()<CR>
+nmap \= :call FormatCode()<CR>
 func! FormatCode()
     exec "w"
     if &filetype == 'python'

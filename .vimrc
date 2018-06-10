@@ -24,7 +24,7 @@ set nobackup        "禁止生成临时文件
 set noswapfile      "禁止生成交换文件
 set autowriteall
 set modified
-let autosave=6
+set autoread
 
 "-------os change------
 let g:iswindows=0

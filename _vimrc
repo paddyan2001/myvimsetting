@@ -24,7 +24,7 @@ set nobackup        "禁止生成临时文件
 set noswapfile      "禁止生成交换文件
 set autowriteall
 set modified
-let autosave=6
+set autoread
 
 "-------os change------
 let g:iswindows=0
@@ -95,7 +95,7 @@ nmap \w :w<CR>
 nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
 nmap , :bd<CR>
-nmap \, :bd<CR>
+nmap \, :bd!<CR>
 nmap \x :tabclose<CR>
 nmap <space> :nohlsearch<CR>
 nmap ] :bn<cr>
@@ -126,8 +126,17 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 
 "-------autorun------
+autocmd FileType python nmap <F5> :w<cr>:exec "!python %"<cr>
 autocmd FileType python nmap \r :w<cr>:exec "!python %"<cr>
-autocmd FileType python nmap \F :0,$!yapf<CR>
+map <F8> :call FormatCode()<CR>
+map \= :call FormatCode()<CR>
+func! FormatCode()
+    exec "w"
+    if &filetype == 'python'
+        exec "!autopep8 --in-place --aggressive %"
+    endif
+endfunc
+
 
 "-------autocommands------
 augroup autosourcing

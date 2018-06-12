@@ -145,7 +145,7 @@ func! Run()
     if &filetype == "python"
         exec "w"
         exec "!python3 %"
-    elseif &filetype = "rust"
+    elseif &filetype == "rust"
         exec "!./%<"
     endif
 endfunc

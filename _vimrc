@@ -7,6 +7,7 @@ set noerrorbells                "设置没有错误提示音
 set novisualbell
 syntax enable
 set number
+set relativenumber
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -126,17 +127,41 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 
 "-------autorun------
-autocmd FileType python nmap <F5> :w<cr>:exec "!python %"<cr>
-autocmd FileType python nmap \r :w<cr>:exec "!python %"<cr>
 nmap <F8> :call FormatCode()<CR>
-nmap \= :call FormatCode()<CR>
+nmap 'f :call FormatCode()<CR>
+nmap <F5> :call Run()<CR>
+nmap 'r :call Run()<CR>
+nmap <F6> :call Build()<CR>
+nmap 'b :call Build()<CR>
+nmap <F7> :call Check()<CR>
+nmap 'c :call Check()<CR>
 func! FormatCode()
     exec "w"
-    if &filetype == 'python'
+    if &filetype == "python"
         exec "!autopep8 --in-place --aggressive %"
+    elseif &filetype == "rust"
+        exec "RustFmt"
     endif
 endfunc
-
+func! Run()
+    if &filetype == "python"
+        exec "w"
+        exec "!python3 %"
+    elseif &filetype == "rust"
+        exec "!cargo run"
+    endif
+endfunc
+func! Build()
+    exec "w"
+    if &filetype == "rust"
+        exec "!cargo build"
+    endif
+endfunc
+func! Check()
+    if &filetype == "rust"
+        exec "!cargo check"
+    endif
+endfunc
 
 "-------autocommands------
 augroup autosourcing
@@ -166,6 +191,9 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'Yggdroot/LeaderF'
+if (g:iswindows==0)
+    Plugin 'rust-lang/rust.vim'
+endif
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

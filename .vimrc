@@ -185,6 +185,9 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'Yggdroot/LeaderF'
+if (g:iswindows==0)
+    Plugin 'rust-lang/rust.vim'
+endif
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

@@ -7,6 +7,7 @@ set noerrorbells                "设置没有错误提示音
 set novisualbell
 syntax enable
 set number
+set relativenumber
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -127,7 +128,9 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 "-------autorun------
 autocmd FileType python nmap <F5> :w<cr>:exec "!python %"<cr>
-map <F2> :call FormatCode()<CR>
+autocmd FileType python nmap \r :w<cr>:exec "!python %"<cr>
+nmap <F8> :call FormatCode()<CR>
+nmap \= :call FormatCode()<CR>
 func! FormatCode()
     exec "w"
     if &filetype == 'python'

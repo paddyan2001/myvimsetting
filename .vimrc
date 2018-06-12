@@ -127,14 +127,32 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 
 "-------autorun------
-autocmd FileType python nmap <F5> :w<cr>:exec "!python %"<cr>
-autocmd FileType python nmap \r :w<cr>:exec "!python %"<cr>
 nmap <F8> :call FormatCode()<CR>
 nmap \= :call FormatCode()<CR>
+nmap <F5> :call Run()<CR>
+nmap \r :call Run()<CR>
+nmap <F6> :call Compile()<CR>
+nmap \c :call Compile()<CR>
 func! FormatCode()
     exec "w"
-    if &filetype == 'python'
+    if &filetype == "python"
         exec "!autopep8 --in-place --aggressive %"
+    elseif &filetype == "rust"
+        exec "RustFmt"
+    endif
+endfunc
+func! Run()
+    if &filetype == "python"
+        exec "w"
+        exec "!python3 %"
+    elseif &filetype = "rust"
+        exec "!./%<"
+    endif
+endfunc
+func! Compile()
+    exec "w"
+    if &filetype == "rust"
+        exec "!rustc %"
     endif
 endfunc
 

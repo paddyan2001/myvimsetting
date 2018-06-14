@@ -128,11 +128,13 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 "-------autorun------
 nmap <F8> :call FormatCode()<CR>
-nmap \= :call FormatCode()<CR>
+nmap 'f :call FormatCode()<CR>
 nmap <F5> :call Run()<CR>
-nmap \r :call Run()<CR>
-nmap <F6> :call Compile()<CR>
-nmap \c :call Compile()<CR>
+nmap 'r :call Run()<CR>
+nmap <F6> :call Build()<CR>
+nmap 'b :call Build()<CR>
+nmap <F7> :call Check()<CR>
+nmap 'c :call Check()<CR>
 func! FormatCode()
     exec "w"
     if &filetype == "python"
@@ -146,16 +148,20 @@ func! Run()
         exec "w"
         exec "!python3 %"
     elseif &filetype == "rust"
-        exec "!./%<"
+        exec "!cargo run"
     endif
 endfunc
-func! Compile()
+func! Build()
     exec "w"
     if &filetype == "rust"
-        exec "!rustc %"
+        exec "!cargo build"
     endif
 endfunc
-
+func! Check()
+    if &filetype == "rust"
+        exec "!cargo check"
+    endif
+endfunc
 
 "-------autocommands------
 augroup autosourcing

@@ -146,20 +146,20 @@ endfunc
 func! Run()
     if &filetype == "python"
         exec "w"
-        exec "!python3 %"
+        exec "!clear&&python3 %"
     elseif &filetype == "rust"
-        exec "!cargo run"
+        exec "!clear&&cargo run"
     endif
 endfunc
 func! Build()
     exec "w"
     if &filetype == "rust"
-        exec "!cargo build"
+        exec "!clear&&cargo build"
     endif
 endfunc
 func! Check()
     if &filetype == "rust"
-        exec "!cargo check"
+        exec "!clear&&cargo check"
     endif
 endfunc
 

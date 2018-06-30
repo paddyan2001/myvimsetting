@@ -39,10 +39,10 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=8 "6 5
+    set linespace=6 "6 5
     set guifont=Hack:h12 "Consolas Fira_Code_Retina Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
-    "autocmd GUIEnter * simalt ~x "启动最大化
+    autocmd GUIEnter * simalt ~x "启动最大化
 endif
 if (g:iswindows)
     "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
@@ -146,20 +146,34 @@ endfunc
 func! Run()
     if &filetype == "python"
         exec "w"
+    if (g:iswindows)
+        exec "!cls&&python %"
+    endif
+    if (g:iswindows==0)
         exec "!clear&&python3 %"
+    endif
     elseif &filetype == "rust"
-        exec "!clear&&cargo run"
+        if (g:iswindows)
+            exec "!cls&&cargo run"
+        endif
+        if (g:iswindows==0)
+            exec "!clear&&cargo run"
+        endif
     endif
 endfunc
 func! Build()
     exec "w"
     if &filetype == "rust"
-        exec "!clear&&cargo build"
+        if (g:iswindows==0)
+            exec "!clear&&cargo build"
+        endif
     endif
 endfunc
 func! Check()
     if &filetype == "rust"
-        exec "!clear&&cargo check"
+        if (g:iswindows==0)
+            exec "!clear&&cargo check"
+        endif
     endif
 endfunc
 

@@ -71,9 +71,9 @@ endif
 
 "set for cterm
 if (g:isgui==0)
-    colorscheme atom-dark-256
-    highlight CursorColumn term=NONE ctermbg=black
-    highlight CursorLine term=NONE ctermbg=black
+    set background=dark
+    colorscheme gruvbox "desert
+    "highlight CursorLine term=NONE ctermbg=black
     "highlight VertSplit ctermbg=darkgrey ctermfg=darkgrey
     "highlight LineNr ctermfg=black
     "highlight TabLineFill ctermfg=Black

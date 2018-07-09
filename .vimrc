@@ -45,8 +45,8 @@ if (g:iswindows && g:isgui)
     autocmd GUIEnter * simalt ~x "启动最大化
 endif
 if (g:iswindows)
-    "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
-    let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
+    let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
+    "let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
     cd ~\OneDrive\Code\
 endif
 
@@ -99,8 +99,8 @@ nmap , :bd<CR>
 nmap \, :bd!<CR>
 nmap \x :tabclose<CR>
 nmap <space> :nohlsearch<CR>
-nmap ] :bn<cr>
-nmap [ :bp<cr>
+nmap ]] :bn<cr>
+nmap [[ :bp<cr>
 nmap <F3> :rightbelow vert term<cr>
 nmap 't :rightbelow vert term<cr>
 tnoremap <m-q> <c-\><c-n>

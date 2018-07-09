@@ -98,8 +98,8 @@ nmap \v :tabedit ~/.vimrc<CR>
 nmap , :bd<CR>
 nmap \, :bd!<CR>
 nmap \x :tabclose<CR>
-nmap \n :tabn
-nmap \p :tabp
+nmap \n :tabn<cr>
+nmap \p :tabp<cr>
 nmap <space> :nohlsearch<CR>
 nmap <F3> :rightbelow vert term<cr>
 nmap \t :rightbelow vert term<cr>

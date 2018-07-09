@@ -99,11 +99,9 @@ nmap , :bd<CR>
 nmap \, :bd!<CR>
 nmap \x :tabclose<CR>
 nmap <space> :nohlsearch<CR>
-nmap ]] :bn<cr>
-nmap [[ :bp<cr>
 nmap <F3> :rightbelow vert term<cr>
-nmap 't :rightbelow vert term<cr>
-tnoremap <m-q> <c-\><c-n>
+nmap \t :rightbelow vert term<cr>
+tnoremap <c-q> <c-\><c-n>
 
 
 "-------split managerment------

@@ -40,7 +40,7 @@ endif
 "set for windows
 if (g:iswindows && g:isgui)
     set linespace=6 "6 5
-    set guifont=Hack:h12 "Consolas Fira_Code_Retina Hack
+    set guifont=Fira_Code:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
 endif
@@ -103,14 +103,19 @@ nmap \p :tabp<cr>
 nmap <space> :nohlsearch<CR>
 nmap <F3> :rightbelow vert term<cr>
 nmap \t :rightbelow vert term<cr>
-tnoremap <c-q> <c-\><c-n>
+nmap \y :rightbelow vert term python<cr>
+tnoremap <m-q> <c-\><c-n>
 
 
 "-------split managerment------
-nmap <C-J> <C-W><C-J>
-nmap <C-K> <C-W><C-K>
-nmap <C-H> <C-W><C-H>
-nmap <C-L> <C-W><C-L>
+nmap <m-j> <c-w>j
+nmap <m-k> <c-w>k
+nmap <m-h> <c-w>h
+nmap <m-l> <c-w>l
+inoremap <m-j> <esc><c-w>j
+inoremap <m-k> <esc><c-w>k
+inoremap <m-h> <esc><c-w>h
+inoremap <m-l> <esc><c-w>l
 
 
 "-------search------

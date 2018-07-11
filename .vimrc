@@ -54,37 +54,32 @@ endif
 if (g:iswindows==0)
     cd ~/code/
     set linespace=5
-    set guifont=Hack:h16
-    "set guifont=Roboto\ Mono\ Medium\ for\ Powerline:h16
+    set guifont=Fira_Code:h16
     let g:completor_python_binary = '/usr/local/bin/python'
 endif
 
 "set for gui
 if (g:isgui)
-    set background=dark
-    colorscheme gruvbox "desert
     set guioptions-=r
     set guioptions-=L
     set guioptions-=m
     set guioptions-=T
 endif
 
-"set for cterm
-if (g:isgui==0)
-    set background=dark
-    colorscheme gruvbox "desert
-    "highlight CursorLine term=NONE ctermbg=black
-    "highlight VertSplit ctermbg=darkgrey ctermfg=darkgrey
-    "highlight LineNr ctermfg=black
-    "highlight TabLineFill ctermfg=Black
-    "highlight TabLine ctermfg=grey ctermbg=black
-endif
-
-
 "-------airline_setting------
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme="luna" "molokai or deus or luna
+
+"-------scheme change-------
+colorscheme gruvbox "desert solarized gruvbox 
+let g:usedarkscheme=1
+if (g:usedarkscheme)
+    set background=dark
+    let g:airline_theme="luna" "molokai or deus or luna
+else
+    set background=light
+    let g:airline_theme="solarized" "molokai or deus or luna
+endif
 
 
 "-------keymapping------
@@ -103,6 +98,7 @@ nmap \p :tabp<cr>
 nmap <space> :nohlsearch<CR>
 nmap <F3> :rightbelow vert term<cr>
 nmap \t :rightbelow vert term<cr>
+nmap <F4> :rightbelow vert term python<cr>
 nmap \y :rightbelow vert term python<cr>
 tnoremap <m-q> <c-\><c-n>
 

@@ -1,4 +1,5 @@
 "-------basic setting------
+"sys.
 set shortmess=atI
 set termencoding=utf-8
 set encoding=utf-8
@@ -39,14 +40,12 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=8 "6 5
-    set guifont=Hack:h12 "Consolas Fira_Code_Retina Hack
+    set linespace=6 "6 5
+    set guifont=Fira_Code:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
-    "autocmd GUIEnter * simalt ~x "启动最大化
-endif
-if (g:iswindows)
-    "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
-    let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
+    autocmd GUIEnter * simalt ~x "启动最大化
+    let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
+    "let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
     cd ~\OneDrive\Code\
 endif
 
@@ -54,37 +53,33 @@ endif
 if (g:iswindows==0)
     cd ~/code/
     set linespace=5
-    set guifont=Hack:h16
-    "set guifont=Roboto\ Mono\ Medium\ for\ Powerline:h16
-    let g:completor_python_binary = '/usr/local/bin/python'
+    set guifont=Fira_Code:h16
+    "let g:completor_python_binary = '/usr/local/bin/python'
+    let g:completor_python_binary = '/Library/Frameworks/Python.framework/Versions/3.7/bin/python3'
 endif
 
 "set for gui
 if (g:isgui)
-    set background=dark
-    colorscheme gruvbox "desert
     set guioptions-=r
     set guioptions-=L
     set guioptions-=m
     set guioptions-=T
 endif
 
-"set for cterm
-if (g:isgui==0)
-    colorscheme atom-dark-256
-    highlight CursorColumn term=NONE ctermbg=black
-    highlight CursorLine term=NONE ctermbg=black
-    "highlight VertSplit ctermbg=darkgrey ctermfg=darkgrey
-    "highlight LineNr ctermfg=black
-    "highlight TabLineFill ctermfg=Black
-    "highlight TabLine ctermfg=grey ctermbg=black
-endif
-
-
 "-------airline_setting------
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme="luna" "molokai or deus or luna
+
+"-------scheme change-------
+colorscheme gruvbox "desert solarized gruvbox 
+let g:usedarkscheme=1
+if (g:usedarkscheme)
+    set background=dark
+    let g:airline_theme="luna" "molokai or deus or luna
+else
+    set background=light
+    let g:airline_theme="solarized" "molokai or deus or luna
+endif
 
 
 "-------keymapping------
@@ -98,16 +93,25 @@ nmap \v :tabedit ~/.vimrc<CR>
 nmap , :bd<CR>
 nmap \, :bd!<CR>
 nmap \x :tabclose<CR>
+nmap \n :tabn<cr>
+nmap \p :tabp<cr>
 nmap <space> :nohlsearch<CR>
-nmap ] :bn<cr>
-nmap [ :bp<cr>
+nmap <F3> :rightbelow vert term<cr>
+nmap \t :rightbelow vert term<cr>
+nmap <F4> :rightbelow vert term python<cr>
+nmap \y :rightbelow vert term python<cr>
+tnoremap <m-q> <c-\><c-n>
 
 
 "-------split managerment------
-nmap <C-J> <C-W><C-J>
-nmap <C-K> <C-W><C-K>
-nmap <C-H> <C-W><C-H>
-nmap <C-L> <C-W><C-L>
+nmap <m-j> <c-w>j
+nmap <m-k> <c-w>k
+nmap <m-h> <c-w>h
+nmap <m-l> <c-w>l
+inoremap <m-j> <esc><c-w>j
+inoremap <m-k> <esc><c-w>k
+inoremap <m-h> <esc><c-w>h
+inoremap <m-l> <esc><c-w>l
 
 
 "-------search------
@@ -131,35 +135,21 @@ nmap <F8> :call FormatCode()<CR>
 nmap 'f :call FormatCode()<CR>
 nmap <F5> :call Run()<CR>
 nmap 'r :call Run()<CR>
-nmap <F6> :call Build()<CR>
-nmap 'b :call Build()<CR>
-nmap <F7> :call Check()<CR>
-nmap 'c :call Check()<CR>
 func! FormatCode()
     exec "w"
     if &filetype == "python"
         exec "!autopep8 --in-place --aggressive %"
-    elseif &filetype == "rust"
-        exec "RustFmt"
     endif
 endfunc
 func! Run()
     if &filetype == "python"
         exec "w"
-        exec "!python3 %"
-    elseif &filetype == "rust"
-        exec "!cargo run"
+    if (g:iswindows)
+        exec "rightbelow vert term python %"
     endif
-endfunc
-func! Build()
-    exec "w"
-    if &filetype == "rust"
-        exec "!cargo build"
-    endif
-endfunc
-func! Check()
-    if &filetype == "rust"
-        exec "!cargo check"
+    if (g:iswindows==0)
+        exec "rightbelow vert term python3 %"
+        "!clear&&python3 %
     endif
 endfunc
 
@@ -191,9 +181,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'Yggdroot/LeaderF'
-if (g:iswindows==0)
-    Plugin 'rust-lang/rust.vim'
-endif
+"Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

@@ -72,7 +72,7 @@ let g:airline_powerline_fonts = 1
 
 "-------scheme change-------
 colorscheme gruvbox "desert solarized gruvbox 
-let g:usedarkscheme=1
+let g:usedarkscheme=0
 if (g:usedarkscheme)
     set background=dark
     let g:airline_theme="luna" "molokai or deus or luna
@@ -151,7 +151,7 @@ func! Run()
     if &filetype == "python"
         exec "w"
     if (g:iswindows)
-        exec "!cls&&python %"
+        exec "rightbelow vert term python %"
     endif
     if (g:iswindows==0)
         exec "!clear&&python3 %"

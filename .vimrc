@@ -71,14 +71,22 @@ let g:airline_powerline_fonts = 1
 
 "-------scheme change-------
 colorscheme gruvbox "desert solarized gruvbox 
+nmap \vd :call SetDarkScheme()<cr>
+nmap \vl :call SetLightScheme()<cr>
 let g:usedarkscheme=0
 if (g:usedarkscheme)
-    set background=dark
-    let g:airline_theme="luna" "molokai or deus or luna
+    call SetDarkScheme()
 else
-    set background=light
-    let g:airline_theme="solarized" "molokai or deus or luna
+    call SetLightScheme()
 endif
+func! SetDarkScheme()
+    let g:airline_theme="luna" "molokai or deus or luna
+    set background=dark
+endfunc
+func! SetLightScheme()
+    let g:airline_theme="solarized"
+    set background=light
+endfunc
 
 
 "-------keymapping------

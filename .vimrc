@@ -158,6 +158,7 @@ func! Run()
         exec "rightbelow vert term python3 %"
         "!clear&&python3 %
     endif
+    endif
 endfunc
 
 "-------autocommands------

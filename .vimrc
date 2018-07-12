@@ -1,4 +1,5 @@
 "-------basic setting------
+"sys.
 set shortmess=atI
 set termencoding=utf-8
 set encoding=utf-8
@@ -43,8 +44,6 @@ if (g:iswindows && g:isgui)
     set guifont=Fira_Code:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
-endif
-if (g:iswindows)
     let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
     "let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
     cd ~\OneDrive\Code\
@@ -55,7 +54,8 @@ if (g:iswindows==0)
     cd ~/code/
     set linespace=5
     set guifont=Fira_Code:h16
-    let g:completor_python_binary = '/usr/local/bin/python'
+    "let g:completor_python_binary = '/usr/local/bin/python'
+    let g:completor_python_binary = '/Library/Frameworks/Python.framework/Versions/3.7/bin/python3'
 endif
 
 "set for gui
@@ -135,16 +135,10 @@ nmap <F8> :call FormatCode()<CR>
 nmap 'f :call FormatCode()<CR>
 nmap <F5> :call Run()<CR>
 nmap 'r :call Run()<CR>
-nmap <F6> :call Build()<CR>
-nmap 'b :call Build()<CR>
-nmap <F7> :call Check()<CR>
-nmap 'c :call Check()<CR>
 func! FormatCode()
     exec "w"
     if &filetype == "python"
         exec "!autopep8 --in-place --aggressive %"
-    elseif &filetype == "rust"
-        exec "RustFmt"
     endif
 endfunc
 func! Run()
@@ -154,30 +148,8 @@ func! Run()
         exec "rightbelow vert term python %"
     endif
     if (g:iswindows==0)
-        exec "!clear&&python3 %"
-    endif
-    elseif &filetype == "rust"
-        if (g:iswindows)
-            exec "!cls&&cargo run"
-        endif
-        if (g:iswindows==0)
-            exec "!clear&&cargo run"
-        endif
-    endif
-endfunc
-func! Build()
-    exec "w"
-    if &filetype == "rust"
-        if (g:iswindows==0)
-            exec "!clear&&cargo build"
-        endif
-    endif
-endfunc
-func! Check()
-    if &filetype == "rust"
-        if (g:iswindows==0)
-            exec "!clear&&cargo check"
-        endif
+        exec "rightbelow vert term python3 %"
+        "!clear&&python3 %
     endif
 endfunc
 
@@ -209,9 +181,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'Yggdroot/LeaderF'
-if (g:iswindows==0)
-    Plugin 'rust-lang/rust.vim'
-endif
+"Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

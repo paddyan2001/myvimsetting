@@ -1,5 +1,4 @@
 "-------basic setting------
-"sys.
 set shortmess=atI
 set termencoding=utf-8
 set encoding=utf-8

@@ -73,12 +73,6 @@ let g:airline_powerline_fonts = 1
 colorscheme gruvbox "desert solarized gruvbox 
 nmap \vd :call SetDarkScheme()<cr>
 nmap \vl :call SetLightScheme()<cr>
-let g:usedarkscheme=0
-if (g:usedarkscheme)
-    call SetDarkScheme()
-else
-    call SetLightScheme()
-endif
 func! SetDarkScheme()
     let g:airline_theme="luna" "molokai or deus or luna
     set background=dark
@@ -87,6 +81,12 @@ func! SetLightScheme()
     let g:airline_theme="solarized"
     set background=light
 endfunc
+let g:usedarkscheme=0
+if (g:usedarkscheme)
+    call SetDarkScheme()
+else
+    call SetLightScheme()
+endif
 
 
 "-------keymapping------

@@ -81,7 +81,7 @@ func! SetLightScheme()
     let g:airline_theme="solarized"
     set background=light
 endfunc
-let g:usedarkscheme=0
+let g:usedarkscheme=1
 if (g:usedarkscheme)
     call SetDarkScheme()
 else

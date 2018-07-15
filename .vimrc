@@ -29,9 +29,17 @@ set autoread
 
 "-------os change------
 let g:iswindows=0
+let g:ismac=0
+let g:islinux=0
 let g:isgui=0
 if(has("win32") || has("win64"))
     let g:iswindows=1
+endif
+if(has("mac"))
+    let g:ismac=1
+endif
+if(has("unix"))
+    let g:islinux=1
 endif
 if has("gui_running")
     let g:isgui=1
@@ -48,13 +56,19 @@ if (g:iswindows && g:isgui)
     cd ~\OneDrive\Code\
 endif
 
-"set for linux mac OSX
-if (g:iswindows==0)
+"set for mac
+if (g:ismac)
     cd ~/code/
     set linespace=5
     set guifont=Fira_Code:h16
-    "let g:completor_python_binary = '/usr/local/bin/python'
     let g:completor_python_binary = '/Library/Frameworks/Python.framework/Versions/3.7/bin/python3'
+endif
+
+if (g:islinux)
+    cd ~/code/
+    set linespace=5
+    set guifont=Fira_Code:h16
+    let g:completor_python_binary = '/usr/bin/python3'
 endif
 
 "set for gui
@@ -116,10 +130,6 @@ nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
 nmap <c-h> <c-w>h
 nmap <c-l> <c-w>l
-inoremap <c-j> <esc><c-w>j
-inoremap <c-k> <esc><c-w>k
-inoremap <c-h> <esc><c-w>h
-inoremap <c-l> <esc><c-w>l
 
 
 "-------search------
@@ -130,7 +140,6 @@ set incsearch
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
 let g:completor_completion_delay = 0
-let g:completor_auto_close_doc = 0
 
 
 "superTab

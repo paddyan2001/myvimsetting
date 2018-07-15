@@ -121,8 +121,10 @@ nmap <F3> :rightbelow vert term<cr>
 nmap \t :rightbelow vert term<cr>
 nmap <F4> :rightbelow vert term python<cr>
 nmap \y :rightbelow vert term python<cr>
-tnoremap `` <c-\><c-n>
-tnoremap <c-q> exit<cr>
+tnoremap `` <c-\><c-n><c-w>h
+tnoremap \\ <c-\><c-n>
+tnoremap \q exit<cr>
+tnoremap <c-p> python 
 
 
 "-------split managerment------

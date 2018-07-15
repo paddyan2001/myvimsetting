@@ -111,14 +111,14 @@ tnoremap <m-q> <c-\><c-n>
 
 
 "-------split managerment------
-nmap <m-j> <c-w>j
-nmap <m-k> <c-w>k
-nmap <m-h> <c-w>h
-nmap <m-l> <c-w>l
-inoremap <m-j> <esc><c-w>j
-inoremap <m-k> <esc><c-w>k
-inoremap <m-h> <esc><c-w>h
-inoremap <m-l> <esc><c-w>l
+nmap <c-j> <c-w>j
+nmap <c-k> <c-w>k
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
+inoremap <c-j> <esc><c-w>j
+inoremap <c-k> <esc><c-w>k
+inoremap <c-h> <esc><c-w>h
+inoremap <c-l> <esc><c-w>l
 
 
 "-------search------

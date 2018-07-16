@@ -1,5 +1,4 @@
 "-------basic setting------
-"sys.
 set shortmess=atI
 set termencoding=utf-8
 set encoding=utf-8
@@ -30,9 +29,17 @@ set autoread
 
 "-------os change------
 let g:iswindows=0
+let g:ismac=0
+let g:islinux=0
 let g:isgui=0
 if(has("win32") || has("win64"))
     let g:iswindows=1
+endif
+if(has("mac"))
+    let g:ismac=1
+endif
+if(has("unix"))
+    let g:islinux=1
 endif
 if has("gui_running")
     let g:isgui=1
@@ -47,15 +54,17 @@ if (g:iswindows && g:isgui)
     let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
     "let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
     cd ~\OneDrive\Code\
-endif
-
-"set for linux mac OSX
-if (g:iswindows==0)
+"set for mac
+elseif (g:ismac)
     cd ~/code/
     set linespace=5
     set guifont=Fira_Code:h16
-    "let g:completor_python_binary = '/usr/local/bin/python'
     let g:completor_python_binary = '/Library/Frameworks/Python.framework/Versions/3.7/bin/python3'
+elseif (g:islinux)
+    cd ~/code/
+    set linespace=5
+    set guifont=Fira_Code:h16
+    let g:completor_python_binary = '/usr/bin/python3'
 endif
 
 "set for gui
@@ -72,13 +81,21 @@ let g:airline_powerline_fonts = 1
 
 "-------scheme change-------
 colorscheme gruvbox "desert solarized gruvbox 
+nmap \vd :call SetDarkScheme()<cr>
+nmap \vl :call SetLightScheme()<cr>
+func! SetDarkScheme()
+    let g:airline_theme="luna" "molokai or deus or luna
+    set background=dark
+endfunc
+func! SetLightScheme()
+    let g:airline_theme="solarized"
+    set background=light
+endfunc
 let g:usedarkscheme=1
 if (g:usedarkscheme)
-    set background=dark
-    let g:airline_theme="luna" "molokai or deus or luna
+    call SetDarkScheme()
 else
-    set background=light
-    let g:airline_theme="solarized" "molokai or deus or luna
+    call SetLightScheme()
 endif
 
 
@@ -100,18 +117,17 @@ nmap <F3> :rightbelow vert term<cr>
 nmap \t :rightbelow vert term<cr>
 nmap <F4> :rightbelow vert term python<cr>
 nmap \y :rightbelow vert term python<cr>
-tnoremap <m-q> <c-\><c-n>
+tnoremap ` <c-\><c-n><c-w>h
+tnoremap `` <c-\><c-n>
+tnoremap <c-q> exit<cr>
+tnoremap <c-p> python 
 
 
 "-------split managerment------
-nmap <m-j> <c-w>j
-nmap <m-k> <c-w>k
-nmap <m-h> <c-w>h
-nmap <m-l> <c-w>l
-inoremap <m-j> <esc><c-w>j
-inoremap <m-k> <esc><c-w>k
-inoremap <m-h> <esc><c-w>h
-inoremap <m-l> <esc><c-w>l
+nmap <c-j> <c-w>j
+nmap <c-k> <c-w>k
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
 
 
 "-------search------
@@ -122,7 +138,6 @@ set incsearch
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
 let g:completor_completion_delay = 0
-let g:completor_auto_close_doc = 0
 
 
 "superTab
@@ -150,6 +165,7 @@ func! Run()
     if (g:iswindows==0)
         exec "rightbelow vert term python3 %"
         "!clear&&python3 %
+    endif
     endif
 endfunc
 

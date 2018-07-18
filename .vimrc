@@ -52,24 +52,18 @@ if (g:iswindows && g:isgui)
     let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
     "let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
     cd ~\OneDrive\Code\
-endif
-
-"set for mac
-if (g:ismac)
+elseif (g:ismac)
     cd ~/code/
     set linespace=5
     set guifont=Fira_Code:h16
     let g:completor_python_binary = '/Library/Frameworks/Python.framework/Versions/3.7/bin/python3'
-endif
-
-if (g:islinux)
+elseif (g:islinux)
     cd ~/code/
     set linespace=5
     set guifont=Fira_Code:h16
     let g:completor_python_binary = '/usr/bin/python3'
 endif
 
-"set for gui
 if (g:isgui)
     set guioptions-=r
     set guioptions-=L

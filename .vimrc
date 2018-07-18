@@ -34,11 +34,9 @@ let g:islinux=0
 let g:isgui=0
 if(has("win32") || has("win64"))
     let g:iswindows=1
-endif
-if(has("mac"))
+elseif(has("mac"))
     let g:ismac=1
-endif
-if(has("unix"))
+elseif(has("unix"))
     let g:islinux=1
 endif
 if has("gui_running")

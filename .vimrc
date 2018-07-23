@@ -96,7 +96,7 @@ endif
 
 
 "-------keymapping------
-nmap ; :
+nmap ' :
 vmap q <esc>
 nmap \q :q<CR>
 nmap \Q :q!<CR>
@@ -135,7 +135,7 @@ set incsearch
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 0
+let g:completor_completion_delay = 1000
 
 
 "superTab

@@ -103,8 +103,8 @@ nmap \Q :q!<CR>
 nmap \w :w<CR>
 nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
-nmap , :bd<CR>
-nmap \, :bd!<CR>
+nmap \d :bd<CR>
+nmap \D :bd!<CR>
 nmap \x :tabclose<CR>
 nmap \n :tabn<cr>
 nmap \p :tabp<cr>
@@ -135,7 +135,7 @@ set incsearch
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 2000
+let g:completor_completion_delay = 1600
 
 
 "superTab

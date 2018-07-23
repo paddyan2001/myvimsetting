@@ -96,7 +96,7 @@ endif
 
 
 "-------keymapping------
-nmap ' :
+nmap \\ :
 vmap q <esc>
 nmap \q :q<CR>
 nmap \Q :q!<CR>

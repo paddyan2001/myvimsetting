@@ -96,7 +96,7 @@ endif
 
 
 "-------keymapping------
-nmap \\ :
+nmap ' :
 vmap q <esc>
 nmap \q :q<CR>
 nmap \Q :q!<CR>
@@ -146,9 +146,9 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 "-------autorun------
 nmap <F8> :call FormatCode()<CR>
-nmap 'f :call FormatCode()<CR>
+nmap \F :call FormatCode()<CR>
 nmap <F5> :call Run()<CR>
-nmap 'r :call Run()<CR>
+nmap \r :call Run()<CR>
 func! FormatCode()
     exec "w"
     if &filetype == "python"

@@ -103,8 +103,8 @@ nmap \Q :q!<CR>
 nmap \w :w<CR>
 nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
-nmap \d :bd<CR>
-nmap \D :bd!<CR>
+nmap `` :bd<CR>
+nmap \d :bd!<CR>
 nmap \x :tabclose<CR>
 nmap \n :tabn<cr>
 nmap \p :tabp<cr>
@@ -118,6 +118,7 @@ nmap \yb :below term python<cr>
 tnoremap ` <c-\><c-n><c-w>h
 tnoremap `` <c-\><c-n>
 tnoremap <c-q> exit<cr>
+tnoremap <c-z> <c-z><cr>
 tnoremap <c-p> python 
 
 
@@ -135,7 +136,7 @@ set incsearch
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 1500
+let g:completor_completion_delay = 1200
 let g:completor_complete_options = 'menuone,noselect'
 
 

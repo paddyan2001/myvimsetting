@@ -96,13 +96,14 @@ endif
 
 
 "-------keymapping------
+nmap ' :
 nmap \q :q<CR>
 nmap \Q :q!<CR>
 nmap \w :w<CR>
 nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
-nmap \d :bd<CR>
-nmap \D :bd!<CR>
+nmap , :bd<CR>
+nmap \d :bd!<CR>
 nmap \x :tabclose<CR>
 nmap \n :tabn<cr>
 nmap \p :tabp<cr>

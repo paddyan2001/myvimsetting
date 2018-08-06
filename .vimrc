@@ -71,13 +71,6 @@ if (g:isgui)
     set guioptions-=T
 endif
 
-"-------airline_setting------
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
-"-------indent line------
-let g:indent_guides_enable_on_vim_startup = 1
-
 "-------scheme change-------
 colorscheme gruvbox "desert solarized gruvbox 
 nmap \vd :call SetDarkScheme()<cr>
@@ -140,11 +133,6 @@ let g:completor_completion_delay = 1200
 let g:completor_complete_options = 'menuone,noselect'
 
 
-"superTab
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
-
-
 "-------autorun------
 nmap <F8> :call FormatCode()<CR>
 nmap \F :call FormatCode()<CR>
@@ -188,9 +176,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'w0rp/ale'
 Plugin 'maralla/completor.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -198,9 +183,29 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'Yggdroot/LeaderF'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/nerdtree'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'w0rp/ale'
 "Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-"-------PluginInstall------
+"-------PluginClean------
+
+
+"--------------plugin_setting----------------------------------
+
+"------airline_setting
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
+
+"------indent line
+let g:indent_guides_enable_on_vim_startup = 1
+
+"------superTab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+"--------------plugin_setting---------------------------------

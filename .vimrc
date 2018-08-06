@@ -46,7 +46,7 @@ endif
 "set for windows
 if (g:iswindows && g:isgui)
     set linespace=6 "6 5
-    set guifont=Fira_Code:h12 "Consolas Fira_Code Hack
+    set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
     let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
@@ -74,6 +74,9 @@ endif
 "-------airline_setting------
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+"-------indent line------
+let g:indent_guides_enable_on_vim_startup = 1
 
 "-------scheme change-------
 colorscheme gruvbox "desert solarized gruvbox 
@@ -194,6 +197,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'Yggdroot/LeaderF'
+Plugin 'nathanaelkane/vim-indent-guides'
 "Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line

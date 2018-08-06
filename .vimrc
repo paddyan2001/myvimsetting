@@ -175,7 +175,7 @@ call vundle#begin()
 
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-vinegar'
+"Plugin 'tpope/vim-vinegar'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
 Plugin 'maralla/completor.vim'
@@ -211,6 +211,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 "------NERDTree
-"autocmd vimenter * NERDTree
+autocmd vimenter * NERDTree
 map <c-n> :NERDTreeToggle<CR>
 "--------------plugin_setting---------------------------------

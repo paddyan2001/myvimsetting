@@ -55,7 +55,7 @@ if (g:iswindows && g:isgui)
 elseif (g:ismac)
     cd ~/code/
     set linespace=5
-    set guifont=Fira_Code:h16
+    set guifont=Hack:h16
     let g:completor_python_binary = '/Library/Frameworks/Python.framework/Versions/3.7/bin/python3'
 elseif (g:islinux)
     cd ~/code/
@@ -97,25 +97,22 @@ endif
 
 "-------keymapping------
 nmap ' :
-vmap q <esc>
 nmap \q :q<CR>
 nmap \Q :q!<CR>
 nmap \w :w<CR>
 nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
-nmap `` :bd<CR>
-nmap \d :bd!<CR>
+nmap \d :bd<CR>
+nmap \D :bd!<CR>
 nmap \x :tabclose<CR>
 nmap \n :tabn<cr>
 nmap \p :tabp<cr>
 nmap <space> :nohlsearch<CR>
-nmap <F3> :rightbelow vert term<cr>
-nmap \t :rightbelow vert term<cr>
-nmap \tb :below term<cr>
-nmap <F4> :rightbelow vert term python<cr>
-nmap \y :rightbelow vert term python<cr>
-nmap \yb :below term python<cr>
-tnoremap ` <c-\><c-n><c-w>h
+nmap <F3> :below term<cr>
+nmap \t :below term<cr>
+nmap <F4> :below term python<cr>
+nmap \y :below term python<cr>
+tnoremap ` <c-\><c-n><c-w>k
 tnoremap `` <c-\><c-n>
 tnoremap <c-q> exit<cr>
 tnoremap <c-z> <c-z><cr>
@@ -160,10 +157,10 @@ func! Run()
     if &filetype == "python"
         exec "w"
     if (g:iswindows)
-        exec "rightbelow vert term python %"
+        exec "below term python %"
     endif
     if (g:iswindows==0)
-        exec "rightbelow vert term python3 %"
+        exec "below term python3 %"
         "!clear&&python3 %
     endif
     endif

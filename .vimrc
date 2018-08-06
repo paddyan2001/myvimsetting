@@ -95,6 +95,8 @@ endif
 nmap ' :
 nmap \q :q<CR>
 nmap \Q :q!<CR>
+nmap \x :x<CR>
+nmap \X :x!<CR>
 nmap \w :w<CR>
 nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
@@ -208,4 +210,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
+"------NERDTree
+"autocmd vimenter * NERDTree
+map <c-n> :NERDTreeToggle<CR>
 "--------------plugin_setting---------------------------------

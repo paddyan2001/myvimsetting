@@ -45,12 +45,12 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=6 "6 5
+    set linespace=8 "6 5
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
-    let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
-    "let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
+    "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
+    let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
     cd ~\OneDrive\Code\
 elseif (g:ismac)
     cd ~/code/
@@ -69,10 +69,11 @@ if (g:isgui)
     set guioptions-=L
     set guioptions-=m
     set guioptions-=T
+    set guioptions-=e
 endif
 
 "-------scheme change-------
-colorscheme gruvbox "desert solarized gruvbox 
+colorscheme gruvbox "desert solarized gruvbox
 nmap \vd :call SetDarkScheme()<cr>
 nmap \vl :call SetLightScheme()<cr>
 func! SetDarkScheme()
@@ -114,7 +115,7 @@ tnoremap ` <c-\><c-n><c-w>k
 tnoremap `` <c-\><c-n>
 tnoremap <c-q> exit<cr>
 tnoremap <c-z> <c-z><cr>
-tnoremap <c-p> python 
+tnoremap <c-p> python
 
 
 "-------split managerment------

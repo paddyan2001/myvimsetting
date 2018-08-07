@@ -77,13 +77,14 @@ colorscheme gruvbox "desert solarized gruvbox
 nmap \vd :call SetDarkScheme()<cr>
 nmap \vl :call SetLightScheme()<cr>
 func! SetDarkScheme()
-    let g:airline_theme="luna" "molokai or deus or luna
+    "let g:airline_theme="luna" "molokai or deus or luna
     set background=dark
 endfunc
 func! SetLightScheme()
-    let g:airline_theme="solarized"
+    "let g:airline_theme="solarized"
     set background=light
 endfunc
+
 let g:usedarkscheme=1
 if (g:usedarkscheme)
     call SetDarkScheme()

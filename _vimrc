@@ -45,12 +45,12 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=6 "6 5
-    set guifont=Fira_Code:h12 "Consolas Fira_Code Hack
+    set linespace=8 "6 5
+    set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
-    let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
-    "let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
+    "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
+    let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
     cd ~\OneDrive\Code\
 elseif (g:ismac)
     cd ~/code/
@@ -69,24 +69,22 @@ if (g:isgui)
     set guioptions-=L
     set guioptions-=m
     set guioptions-=T
+    set guioptions-=e
 endif
 
-"-------airline_setting------
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
 "-------scheme change-------
-colorscheme gruvbox "desert solarized gruvbox 
+colorscheme gruvbox "desert solarized gruvbox
 nmap \vd :call SetDarkScheme()<cr>
 nmap \vl :call SetLightScheme()<cr>
 func! SetDarkScheme()
-    let g:airline_theme="luna" "molokai or deus or luna
+    "let g:airline_theme="luna" "molokai or deus or luna
     set background=dark
 endfunc
 func! SetLightScheme()
-    let g:airline_theme="solarized"
+    "let g:airline_theme="solarized"
     set background=light
 endfunc
+
 let g:usedarkscheme=1
 if (g:usedarkscheme)
     call SetDarkScheme()
@@ -99,14 +97,17 @@ endif
 nmap ' :
 nmap \q :q<CR>
 nmap \Q :q!<CR>
+nmap = :tabclose<CR>
+nmap + :x<CR>
 nmap \w :w<CR>
 nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
-nmap , :bd<CR>
-nmap \d :bd!<CR>
-nmap \x :tabclose<CR>
-nmap \n :tabn<cr>
-nmap \p :tabp<cr>
+nmap - :bd<CR>
+nmap _ :bd!<CR>
+nmap [ :tabp<cr>
+nmap ] :tabn<cr>
+nmap \[ :bp<cr>
+nmap \] :bn<cr>
 nmap <space> :nohlsearch<CR>
 nmap <F3> :below term<cr>
 nmap \t :below term<cr>
@@ -116,7 +117,7 @@ tnoremap ` <c-\><c-n><c-w>k
 tnoremap `` <c-\><c-n>
 tnoremap <c-q> exit<cr>
 tnoremap <c-z> <c-z><cr>
-tnoremap <c-p> python 
+tnoremap <c-p> python
 
 
 "-------split managerment------
@@ -135,11 +136,6 @@ set incsearch
 set complete=.,w,b,u
 let g:completor_completion_delay = 1200
 let g:completor_complete_options = 'menuone,noselect'
-
-
-"superTab
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 
 "-------autorun------
@@ -182,21 +178,42 @@ call vundle#begin()
 
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-vinegar'
+"Plugin 'tpope/vim-vinegar'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'w0rp/ale'
 Plugin 'maralla/completor.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'Yggdroot/LeaderF'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/nerdtree'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'w0rp/ale'
 "Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-"-------PluginInstall------
+"-------PluginClean------
+
+
+"--------------plugin_setting----------------------------------
+
+"------airline_setting
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
+
+"------indent line
+let g:indent_guides_enable_on_vim_startup = 1
+
+"------superTab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+"------NERDTree
+autocmd vimenter * NERDTree
+map <c-n> :NERDTreeToggle<CR>
+"--------------plugin_setting---------------------------------

@@ -45,7 +45,7 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=8 "6 5
+    set linespace=5 "6 5
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
@@ -100,7 +100,6 @@ nmap \Q :q!<CR>
 nmap = :tabclose<CR>
 nmap + :x<CR>
 nmap \w :w<CR>
-nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
 nmap - :bd<CR>
 nmap _ :bd!<CR>

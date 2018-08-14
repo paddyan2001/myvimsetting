@@ -45,12 +45,12 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=5 "6 5
+    set linespace=6 "6 5
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
-    "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
-    let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
+    let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
+    "let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
     cd ~\OneDrive\Code\
 elseif (g:ismac)
     cd ~/code/
@@ -149,15 +149,18 @@ func! FormatCode()
     endif
 endfunc
 func! Run()
+    exec "w"
     if &filetype == "python"
-        exec "w"
-    if (g:iswindows)
-        exec "below term python %"
+        if (g:iswindows)
+            exec "below term python %"
+        elseif(g:ismac)
+            exec "below term python3 %"
+        elseif(g:islinux)
+            exec "!clear&&python3 %"
+        endif
     endif
-    if (g:iswindows==0)
-        exec "below term python3 %"
-        "!clear&&python3 %
-    endif
+    if &filetype=="sh"
+        exec "!clear&&bash %"
     endif
 endfunc
 

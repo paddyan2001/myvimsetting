@@ -49,8 +49,8 @@ if (g:iswindows && g:isgui)
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
-    let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
-    "let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
+    "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notebook
+    let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
     cd ~\OneDrive\Code\
 elseif (g:ismac)
     cd ~/code/

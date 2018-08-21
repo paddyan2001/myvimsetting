@@ -217,6 +217,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 "------NERDTree
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 map <c-n> :NERDTreeToggle<CR>
 "--------------plugin_setting---------------------------------

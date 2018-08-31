@@ -101,6 +101,7 @@ nmap = :tabclose<CR>
 nmap + :x<CR>
 nmap \w :w<CR>
 nmap \v :tabedit ~/.vimrc<CR>
+nmap \c :%s/\s\+$//e
 nmap - :bd<CR>
 nmap _ :bd!<CR>
 nmap [ :tabp<cr>

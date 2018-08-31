@@ -7,7 +7,7 @@ set noerrorbells                "设置没有错误提示音
 set novisualbell
 syntax enable
 set number
-set relativenumber
+"set relativenumber
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -45,7 +45,7 @@ endif
 
 "set for windows
 if (g:iswindows && g:isgui)
-    set linespace=5 "6 5
+    set linespace=8 "6 5
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
@@ -171,36 +171,25 @@ augroup autosourcing
 	autocmd BufWritePost .vimrc source %
 augroup END
 
-
-"-------PluginInstall------
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-
-Plugin 'VundleVim/Vundle.vim'
-"Plugin 'tpope/vim-vinegar'
-Plugin 'ervandew/supertab'
-Plugin 'tpope/vim-surround'
-Plugin 'maralla/completor.vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'Yggdroot/LeaderF'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'scrooloose/nerdtree'
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'w0rp/ale'
-"Plugin 'rust-lang/rust.vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-"-------PluginClean------
+"-------vim-plug------
+call plug#begin('~/.vim/plugged')
+"Plug 'tpope/vim-vinegar'
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-surround'
+Plug 'maralla/completor.vim',{'for':['python','javascript']}
+Plug 'MarcWeber/vim-addon-mw-utils',{'for':['python','javascript']}
+Plug 'tomtom/tlib_vim',{'for':['python','javascript']}
+Plug 'garbas/vim-snipmate',{'for':['python','javascript']}
+Plug 'honza/vim-snippets',{'for':['python','javascript']}
+Plug 'Yggdroot/LeaderF'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/nerdtree', {'on':'NERDTreeToggle'}
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
+"Plug 'rust-lang/rust.vim'
+call plug#end()
+"-------vim-plug------
 
 
 "--------------plugin_setting----------------------------------
@@ -219,4 +208,14 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 "------NERDTree
 "autocmd vimenter * NERDTree
 map <c-n> :NERDTreeToggle<CR>
+
+"------ale
+let g:ale_linters_explicit = 1
+let g:ale_linters = {'csh': ['shell'],'python': ['pylint'], 'zsh': ['shell']}
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 600
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 600
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
 "--------------plugin_setting---------------------------------

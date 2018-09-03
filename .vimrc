@@ -219,4 +219,7 @@ let g:ale_echo_delay = 20
 let g:ale_lint_delay = 600
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
+
+"------ale
+let g:Lf_ShortcutF = '<leader>\'
 "--------------plugin_setting---------------------------------

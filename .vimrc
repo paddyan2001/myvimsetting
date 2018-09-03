@@ -189,6 +189,7 @@ Plug 'scrooloose/nerdtree', {'on':'NERDTreeToggle'}
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 "Plug 'rust-lang/rust.vim'
+Plug 'justinmk/vim-sneak'
 call plug#end()
 "-------vim-plug------
 
@@ -222,4 +223,5 @@ let g:ale_lint_on_insert_leave = 1
 
 "------ale
 let g:Lf_ShortcutF = '<leader>\'
+
 "--------------plugin_setting---------------------------------

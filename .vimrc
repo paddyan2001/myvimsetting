@@ -49,8 +49,7 @@ if (g:iswindows && g:isgui)
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
-    "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notebook
-    let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
+    let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe'
     cd ~\OneDrive\Code\
 elseif (g:ismac)
     cd ~/code/
@@ -101,13 +100,14 @@ nmap = :tabclose<CR>
 nmap + :x<CR>
 nmap \w :w<CR>
 nmap \v :tabedit ~/.vimrc<CR>
+nmap \n :tabedit 
 nmap \c :%s/\s\+$//e
 nmap - :bd<CR>
 nmap _ :bd!<CR>
-nmap [ :tabp<cr>
-nmap ] :tabn<cr>
-nmap \[ :bp<cr>
-nmap \] :bn<cr>
+nmap <c-[> :tabp<cr>
+nmap <c-]> :tabn<cr>
+nmap [ :bp<cr>
+nmap ] :bn<cr>
 nmap <space> :nohlsearch<CR>
 nmap <F3> :below term<cr>
 nmap \t :below term<cr>
@@ -174,7 +174,6 @@ augroup END
 
 "-------vim-plug------
 call plug#begin('~/.vim/plugged')
-"Plug 'tpope/vim-vinegar'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'maralla/completor.vim',{'for':['python','javascript']}

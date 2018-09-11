@@ -97,7 +97,7 @@ nmap ' :
 nmap \q :q<CR>
 nmap \Q :q!<CR>
 nmap = :tabclose<CR>
-nmap + :x<CR>
+nmap + :tabclose!<CR>
 nmap \w :w<CR>
 nmap \v :tabedit ~/.vimrc<CR>
 nmap \n :tabedit 

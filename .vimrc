@@ -211,7 +211,6 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 map <c-n> :NERDTreeToggle<CR>
 
 "------ale
-let g:ale_linters_explicit = 1
 let g:ale_linters = {'csh': ['shell'],'python': ['pylint'], 'zsh': ['shell']}
 let g:ale_linters_explicit = 1
 let g:ale_completion_delay = 600

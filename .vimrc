@@ -117,6 +117,7 @@ if(g:islinux==0)
     tnoremap ` <c-\><c-n><c-w>k
     tnoremap `` <c-\><c-n>
     tnoremap <c-q> exit<cr>
+    tnoremap <c-Q> exit()<cr>
     tnoremap <c-z> <c-z><cr>
     tnoremap <c-p> python
 endif

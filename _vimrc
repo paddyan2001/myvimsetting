@@ -7,7 +7,7 @@ set noerrorbells                "设置没有错误提示音
 set novisualbell
 syntax enable
 set number
-set relativenumber
+"set relativenumber
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -49,14 +49,14 @@ if (g:iswindows && g:isgui)
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
-    "let g:completor_python_binary = '~/programs/Python/Python36/python.exe' "notbook
-    let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe' "desktop
+    let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe'
     cd ~\OneDrive\Code\
 elseif (g:ismac)
     cd ~/code/
     set linespace=5
     set guifont=Hack:h16
     let g:completor_python_binary = '/Library/Frameworks/Python.framework/Versions/3.7/bin/python3'
+    let g:completor_clang_binary = '/usr/bin/clang'
 elseif (g:islinux)
     cd ~/code/
     set linespace=5
@@ -96,29 +96,32 @@ endif
 "-------keymapping------
 nmap ' :
 nmap \q :q<CR>
-nmap \Q :q!<CR>
+nmap \Q :qa!<CR>
 nmap = :tabclose<CR>
-nmap + :x<CR>
+nmap + :tabclose!<CR>
 nmap \w :w<CR>
-nmap \W :w!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
+nmap \n :tabedit 
+nmap \c :%s/\s\+$//e<cr>
 nmap - :bd<CR>
 nmap _ :bd!<CR>
-nmap [ :tabp<cr>
-nmap ] :tabn<cr>
-nmap \[ :bp<cr>
-nmap \] :bn<cr>
+nmap <c-[> :tabp<cr>
+nmap <c-]> :tabn<cr>
+nmap [ :bp<cr>
+nmap ] :bn<cr>
 nmap <space> :nohlsearch<CR>
 nmap <F3> :below term<cr>
 nmap \t :below term<cr>
 nmap <F4> :below term python<cr>
 nmap \y :below term python<cr>
-tnoremap ` <c-\><c-n><c-w>k
-tnoremap `` <c-\><c-n>
-tnoremap <c-q> exit<cr>
-tnoremap <c-z> <c-z><cr>
-tnoremap <c-p> python
-
+if(g:islinux==0)
+    tnoremap ` <c-\><c-n><c-w>k
+    tnoremap `` <c-\><c-n>
+    tnoremap <c-q> exit<cr>
+    tnoremap <c-Q> exit()<cr>
+    tnoremap <c-z> <c-z><cr>
+    tnoremap <c-p> python
+endif
 
 "-------split managerment------
 nmap <c-j> <c-w>j
@@ -134,7 +137,7 @@ set incsearch
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 1200
+let g:completor_completion_delay = 900
 let g:completor_complete_options = 'menuone,noselect'
 
 
@@ -150,15 +153,22 @@ func! FormatCode()
     endif
 endfunc
 func! Run()
+    exec "w"
     if &filetype == "python"
-        exec "w"
-    if (g:iswindows)
-        exec "below term python %"
+        if (g:iswindows)
+            exec "below term python %"
+        elseif(g:ismac)
+            exec "below term python3 %"
+        elseif(g:islinux)
+            exec "!clear&&python3 %"
+        endif
     endif
-    if (g:iswindows==0)
-        exec "below term python3 %"
-        "!clear&&python3 %
+    if &filetype=="sh"
+        exec "!./%"
     endif
+    if &filetype=="c"
+        exec "!gcc % -o %<"
+        exec "!./% <"
     endif
 endfunc
 
@@ -168,36 +178,25 @@ augroup autosourcing
 	autocmd BufWritePost .vimrc source %
 augroup END
 
-
-"-------PluginInstall------
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-
-Plugin 'VundleVim/Vundle.vim'
-"Plugin 'tpope/vim-vinegar'
-Plugin 'ervandew/supertab'
-Plugin 'tpope/vim-surround'
-Plugin 'maralla/completor.vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'Yggdroot/LeaderF'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'scrooloose/nerdtree'
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'w0rp/ale'
-"Plugin 'rust-lang/rust.vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-"-------PluginClean------
+"-------vim-plug------
+call plug#begin('~/.vim/plugged')
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-surround'
+Plug 'maralla/completor.vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+Plug 'Yggdroot/LeaderF'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/nerdtree', {'on':'NERDTreeToggle'}
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
+"Plug 'rust-lang/rust.vim'
+Plug 'justinmk/vim-sneak'
+call plug#end()
+"-------vim-plug------
 
 
 "--------------plugin_setting----------------------------------
@@ -214,6 +213,19 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 "------NERDTree
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 map <c-n> :NERDTreeToggle<CR>
+
+"------ale
+let g:ale_linters = {'c': ['clang'],'python': ['pylint'], 'zsh': ['shell']}
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 600
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 600
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+
+"------LeaderF
+let g:Lf_ShortcutF = '<leader>\'
+
 "--------------plugin_setting---------------------------------

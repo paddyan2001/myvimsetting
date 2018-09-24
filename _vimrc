@@ -101,13 +101,11 @@ nmap = :tabclose<CR>
 nmap + :tabclose!<CR>
 nmap \w :w<CR>
 nmap \v :tabedit ~/.vimrc<CR>
-nmap \n :tabedit 
 nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
 nnoremap tk  :tabprev<CR>
 nnoremap tl  :tablast<CR>
 nnoremap tt  :tabedit<Space>
-nnoremap tn  :tabnew<Space>
 nnoremap tm  :tabm<Space>
 nmap \c :%s/\s\+$//e<cr>
 nmap - :bd<CR>

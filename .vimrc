@@ -106,7 +106,7 @@ nnoremap tk  :tabprev<CR>
 nnoremap tl  :tablast<CR>
 nnoremap tn  :tabedit<Space>
 nnoremap tm  :tabm<Space>
-nmap \c :%s/\s\+$//e<cr>
+nmap \C :%s/\s\+$//e<cr>
 nmap - :bd<CR>
 nmap _ :bd!<CR>
 nmap [ :bp<cr>
@@ -147,7 +147,7 @@ let g:completor_complete_options = 'menuone,noselect'
 nmap <F8> :call FormatCode()<CR>
 nmap \F :call FormatCode()<CR>
 nmap <F6> :call Compile()<CR>
-nmap \r :call Compile()<CR>
+nmap \c :call Compile()<CR>
 nmap <F5> :call Run()<CR>
 nmap \r :call Run()<CR>
 

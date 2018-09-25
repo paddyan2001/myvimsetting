@@ -112,9 +112,9 @@ nmap _ :bd!<CR>
 nmap [ :bp<cr>
 nmap ] :bn<cr>
 nmap <space> :nohlsearch<CR>
-nmap <F3> :below term<cr>
+nmap <F1> :below term<cr>
 nmap \t :below term<cr>
-nmap <F4> :below term python<cr>
+nmap <F2> :below term python<cr>
 nmap \y :below term python<cr>
 if(g:islinux==0)
     tnoremap ` <c-\><c-n><c-w>k
@@ -146,17 +146,24 @@ let g:completor_complete_options = 'menuone,noselect'
 "-------autorun------
 nmap <F8> :call FormatCode()<CR>
 nmap \F :call FormatCode()<CR>
+nmap <F6> :call Compile()<CR>
+nmap \r :call Compile()<CR>
 nmap <F5> :call Run()<CR>
 nmap \r :call Run()<CR>
+
 func! FormatCode()
     exec "w"
     if &filetype == "python"
         exec "!autopep8 --in-place --aggressive %"
     endif
 endfunc
-func! Run()
+func! Compile()
     exec "w"
+    exec "!gcc % -o %<"
+endfunc
+func! Run()
     if &filetype == "python"
+        exec "w"
         if (g:iswindows)
             exec "below term python %"
         elseif(g:ismac)
@@ -166,11 +173,11 @@ func! Run()
         endif
     endif
     if &filetype=="sh"
+        exec "w"
         exec "!./%"
     endif
     if &filetype=="c"
-        exec "!gcc % -o %<"
-        exec "!./% <"
+        exec "!./%<"
     endif
 endfunc
 

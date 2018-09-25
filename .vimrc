@@ -100,12 +100,15 @@ nmap = :tabclose<CR>
 nmap + :tabclose!<CR>
 nmap \w :w<CR>
 nmap \v :tabedit ~/.vimrc<CR>
-nmap \n :tabedit 
+nnoremap th  :tabfirst<CR>
+nnoremap tj  :tabnext<CR>
+nnoremap tk  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tn  :tabedit<Space>
+nnoremap tm  :tabm<Space>
 nmap \c :%s/\s\+$//e<cr>
 nmap - :bd<CR>
 nmap _ :bd!<CR>
-nmap <c-[> :tabp<cr>
-nmap <c-]> :tabn<cr>
 nmap [ :bp<cr>
 nmap ] :bn<cr>
 nmap <space> :nohlsearch<CR>
@@ -136,7 +139,7 @@ set incsearch
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 1200
+let g:completor_completion_delay = 900
 let g:completor_complete_options = 'menuone,noselect'
 
 
@@ -163,7 +166,11 @@ func! Run()
         endif
     endif
     if &filetype=="sh"
-        exec "!clear&&bash %"
+        exec "!./%"
+    endif
+    if &filetype=="c"
+        exec "!gcc % -o %<"
+        exec "!./% <"
     endif
 endfunc
 
@@ -177,11 +184,11 @@ augroup END
 call plug#begin('~/.vim/plugged')
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
-Plug 'maralla/completor.vim',{'for':['python','javascript']}
-Plug 'MarcWeber/vim-addon-mw-utils',{'for':['python','javascript']}
-Plug 'tomtom/tlib_vim',{'for':['python','javascript']}
-Plug 'garbas/vim-snipmate',{'for':['python','javascript']}
-Plug 'honza/vim-snippets',{'for':['python','javascript']}
+Plug 'maralla/completor.vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 Plug 'Yggdroot/LeaderF'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree', {'on':'NERDTreeToggle'}
@@ -212,7 +219,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 map <c-n> :NERDTreeToggle<CR>
 
 "------ale
-let g:ale_linters = {'csh': ['shell'],'python': ['pylint'], 'zsh': ['shell']}
+let g:ale_linters = {'c': ['gcc'],'python': ['pylint']}
 let g:ale_linters_explicit = 1
 let g:ale_completion_delay = 600
 let g:ale_echo_delay = 20

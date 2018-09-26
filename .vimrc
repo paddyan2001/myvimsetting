@@ -165,7 +165,7 @@ func! Compile()
         exec "!gcc % -o %<"
     endif
     if &filetype == "java"
-        exec "below term javac encoding utf8 %"
+        exec "below term javac %"
     endif
 endfunc
 func! Run()

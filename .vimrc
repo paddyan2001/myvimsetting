@@ -26,6 +26,8 @@ set noswapfile      "禁止生成交换文件
 set autowriteall
 set modified
 set autoread
+set showtabline=2  "0,1,2显示标签栏
+set tabpagemax=15  "设置标签栏最大值
 
 "-------os change------
 let g:iswindows=0

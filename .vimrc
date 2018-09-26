@@ -141,7 +141,7 @@ set incsearch
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 900
+let g:completor_completion_delay = 1000
 let g:completor_complete_options = 'menuone,noselect'
 
 
@@ -161,7 +161,12 @@ func! FormatCode()
 endfunc
 func! Compile()
     exec "w"
-    exec "!gcc % -o %<"
+    if &filetype == "c"
+        exec "!gcc % -o %<"
+    endif
+    if &filetype == "java"
+        exec "below term javac encoding utf8 %"
+    endif
 endfunc
 func! Run()
     if &filetype == "python"
@@ -180,6 +185,9 @@ func! Run()
     endif
     if &filetype=="c"
         exec "!./%<"
+    endif
+    if &filetype=="java"
+        exec "below term java %<"
     endif
 endfunc
 
@@ -228,9 +236,9 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 map <c-n> :NERDTreeToggle<CR>
 
 "------ale
-let g:ale_linters = {'c': ['gcc'],'python': ['pylint']}
+let g:ale_linters = {'c': ['gcc'],'python': ['pylint'],'java':['javac'],'bash': ['shell']}
 let g:ale_linters_explicit = 1
-let g:ale_completion_delay = 600
+let g:ale_completion_delay = 1000
 let g:ale_echo_delay = 20
 let g:ale_lint_delay = 600
 let g:ale_lint_on_text_changed = 'normal'

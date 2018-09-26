@@ -104,6 +104,7 @@ nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
 nnoremap tk  :tabprev<CR>
 nnoremap tl  :tablast<CR>
+nnoremap to  :tabonly<CR>
 nnoremap tn  :tabedit<Space>
 nnoremap tm  :tabm<Space>
 nmap \C :%s/\s\+$//e<cr>

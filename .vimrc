@@ -46,7 +46,7 @@ if has("gui_running")
 endif
 
 "set for windows
-if (g:iswindows && g:isgui)
+if (g:iswindows)
     set linespace=8 "6 5
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染

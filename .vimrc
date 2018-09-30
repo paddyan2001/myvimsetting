@@ -47,7 +47,7 @@ endif
 
 "set for windows
 if (g:iswindows)
-    set linespace=8 "6 5
+    set linespace=6 "6 5
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
@@ -113,8 +113,8 @@ nnoremap tm  :tabm<Space>
 nmap \C :%s/\s\+$//e<cr>
 nmap - :bd<CR>
 nmap _ :bd!<CR>
-nmap [ :bp<cr>
-nmap ] :bn<cr>
+nmap t[ :bp<cr>
+nmap t] :bn<cr>
 nmap <space> :nohlsearch<CR>
 nmap <F1> :below term<cr>
 nmap \t :below term<cr>

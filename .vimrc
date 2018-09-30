@@ -28,6 +28,7 @@ set modified
 set autoread
 set showtabline=2  "0,1,2显示标签栏
 set tabpagemax=15  "设置标签栏最大值
+set signcolumn=yes  "强制显示侧边栏
 
 "-------os change------
 let g:iswindows=0
@@ -203,11 +204,9 @@ Plug 'honza/vim-snippets'
 Plug 'Yggdroot/LeaderF'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree', {'on':'NERDTreeToggle'}
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
-"Plug 'rust-lang/rust.vim'
 Plug 'justinmk/vim-sneak'
+Plug 'mhinz/vim-signify'
 call plug#end()
 "-------vim-plug------
 

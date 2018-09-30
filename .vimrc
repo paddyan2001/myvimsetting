@@ -59,6 +59,7 @@ elseif (g:ismac)
     set linespace=5
     set guifont=Hack:h16
     let g:completor_python_binary = '/Library/Frameworks/Python.framework/Versions/3.7/bin/python3'
+    let g:completor_clang_binary = '/usr/bin/clang'
 elseif (g:islinux)
     cd ~/code/
     set linespace=5

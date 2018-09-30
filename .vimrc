@@ -47,7 +47,7 @@ endif
 
 "set for windows
 if (g:iswindows)
-    set linespace=6 "6 5
+    set linespace=6 "6 8
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
@@ -110,7 +110,9 @@ nnoremap to  :tabonly<CR>
 nnoremap tn  :tabedit<Space>
 nnoremap tc  :tabclose<Space>
 nnoremap tm  :tabm<Space>
-nmap \C :%s/\s\+$//e<cr>
+nnoremap tw  :cw<CR>
+nnoremap td  :ccl<CR>
+nmap \c :%s/\s\+$//e<cr>
 nmap - :bd<CR>
 nmap _ :bd!<CR>
 nmap t[ :bp<cr>
@@ -147,11 +149,15 @@ let g:completor_completion_delay = 1000
 let g:completor_complete_options = 'menuone,noselect'
 
 
-"-------autorun------
+"-------auto------
+autocmd BufWritePost .vimrc source %
+autocmd FileType java set makeprg=javac\ %
+autocmd FileType c set makeprg=gcc\ %\ -o\ %<
+
 nmap <F8> :call FormatCode()<CR>
 nmap \F :call FormatCode()<CR>
-nmap <F6> :call Compile()<CR>
-nmap \c :call Compile()<CR>
+nmap <F6> :make<CR>
+nmap \b :make<CR>
 nmap <F5> :call Run()<CR>
 nmap \r :call Run()<CR>
 
@@ -159,15 +165,6 @@ func! FormatCode()
     exec "w"
     if &filetype == "python"
         exec "!autopep8 --in-place --aggressive %"
-    endif
-endfunc
-func! Compile()
-    exec "w"
-    if &filetype == "c"
-        exec "!gcc % -o %<"
-    endif
-    if &filetype == "java"
-        exec "below term javac %"
     endif
 endfunc
 func! Run()
@@ -193,11 +190,6 @@ func! Run()
     endif
 endfunc
 
-"-------autocommands------
-augroup autosourcing
-	autocmd!
-	autocmd BufWritePost .vimrc source %
-augroup END
 
 "-------vim-plug------
 call plug#begin('~/.vim/plugged')

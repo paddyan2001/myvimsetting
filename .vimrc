@@ -77,24 +77,9 @@ endif
 
 "-------scheme change-------
 colorscheme gruvbox "desert solarized gruvbox
-nmap \vd :call SetDarkScheme()<cr>
-nmap \vl :call SetLightScheme()<cr>
-func! SetDarkScheme()
-    "let g:airline_theme="luna" "molokai or deus or luna
-    set background=dark
-endfunc
-func! SetLightScheme()
-    "let g:airline_theme="solarized"
-    set background=light
-endfunc
-
-let g:usedarkscheme=1
-if (g:usedarkscheme)
-    call SetDarkScheme()
-else
-    call SetLightScheme()
-endif
-
+set background=dark
+nmap \vd :set background=dark<cr>
+nmap \vl :set background=light<cr>
 
 "-------keymapping------
 nmap ' :
@@ -207,7 +192,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree', {'on':'NERDTreeToggle'}
 Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
-Plug 'mhinz/vim-signify'
 call plug#end()
 "-------vim-plug------
 

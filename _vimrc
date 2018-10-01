@@ -147,10 +147,9 @@ let g:completor_complete_options = 'menuone,noselect'
 
 "--------- Ignore compiled files
 set wildmenu
-set wildmode=longest:list,full
-set wildignore=*.o,*~,*.pyc,*.class,*.out
-if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*
+set wildignore=*.o,*.pyc,*.class,*.out
+if (g:iswindows)
+    set wildignore+=.git\*,.hg\*,.svn\*,
 else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif

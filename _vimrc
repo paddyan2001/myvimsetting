@@ -32,7 +32,7 @@ set tabpagemax=15  "设置标签栏最大值
 set signcolumn=yes  "强制显示侧边栏
 "set autochdir       "自动切换到正在编辑的文件的目录
 set history=600     "多少次历史操作
-set ruler
+"set ruler
 set lazyredraw
 set magic
 set wildmenu
@@ -143,8 +143,11 @@ set complete=.,w,b,u
 let g:completor_completion_delay = 1000
 let g:completor_complete_options = 'menuone,noselect'
 
-"-------auto------
-autocmd BufWritePost .vimrc source %
+"-------autorun------
+augroup autosourcing
+	autocmd!
+	autocmd BufWritePost .vimrc source %
+augroup END
 autocmd FileType java set makeprg=javac\ %
 autocmd FileType c set makeprg=gcc\ %\ -o\ %<
 

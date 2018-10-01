@@ -35,7 +35,7 @@ set history=600     "多少次历史操作
 set ruler
 set lazyredraw
 set magic
-
+set wildmenu
 
 "-------os change------
 let g:iswindows=0
@@ -138,21 +138,10 @@ set incsearch
 set ignorecase
 set smartcase
 
-
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
 let g:completor_completion_delay = 1000
 let g:completor_complete_options = 'menuone,noselect'
-
-
-"--------- Ignore compiled files
-set wildmenu
-set wildignore=*.o,*.pyc,*.class,*.out
-if (g:iswindows)
-    set wildignore+=.git\*,.hg\*,.svn\*,
-else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
-endif
 
 "-------auto------
 autocmd BufWritePost .vimrc source %

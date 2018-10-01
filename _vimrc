@@ -22,10 +22,20 @@ set showmatch       "高亮括号匹配
 set matchtime=2     "高亮括号时间是十分之n秒
 set scrolloff=3     "光标移动到buffer的顶部和底部时保持3行距离
 set nobackup        "禁止生成临时文件
+set nowb
 set noswapfile      "禁止生成交换文件
 set autowriteall
 set modified
 set autoread
+set showtabline=2  "0,1,2显示标签栏
+set tabpagemax=15  "设置标签栏最大值
+set signcolumn=yes  "强制显示侧边栏
+"set autochdir       "自动切换到正在编辑的文件的目录
+set history=600     "多少次历史操作
+set ruler
+set lazyredraw
+set magic
+
 
 "-------os change------
 let g:iswindows=0
@@ -44,8 +54,8 @@ if has("gui_running")
 endif
 
 "set for windows
-if (g:iswindows && g:isgui)
-    set linespace=8 "6 5
+if (g:iswindows)
+    set linespace=6 "6 8
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
@@ -74,29 +84,14 @@ endif
 
 "-------scheme change-------
 colorscheme gruvbox "desert solarized gruvbox
-nmap \vd :call SetDarkScheme()<cr>
-nmap \vl :call SetLightScheme()<cr>
-func! SetDarkScheme()
-    "let g:airline_theme="luna" "molokai or deus or luna
-    set background=dark
-endfunc
-func! SetLightScheme()
-    "let g:airline_theme="solarized"
-    set background=light
-endfunc
-
-let g:usedarkscheme=1
-if (g:usedarkscheme)
-    call SetDarkScheme()
-else
-    call SetLightScheme()
-endif
-
+set background=dark
+nmap \vd :set background=dark<cr>
+nmap \vl :set background=light<cr>
 
 "-------keymapping------
 nmap ' :
 nmap \q :q<CR>
-nmap \Q :qa!<CR>
+nmap Q :qa!<CR>
 nmap = :tabclose<CR>
 nmap + :tabclose!<CR>
 nmap \w :w<CR>
@@ -105,17 +100,21 @@ nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
 nnoremap tk  :tabprev<CR>
 nnoremap tl  :tablast<CR>
-nnoremap tt  :tabedit<Space>
+nnoremap to  :tabonly<CR>
+nnoremap tn  :tabedit<Space>
+nnoremap tc  :tabclose<Space>
 nnoremap tm  :tabm<Space>
+nnoremap tw  :cw<CR>
+nnoremap td  :ccl<CR>
 nmap \c :%s/\s\+$//e<cr>
 nmap - :bd<CR>
 nmap _ :bd!<CR>
-nmap [ :bp<cr>
-nmap ] :bn<cr>
+nmap t[ :bp<cr>
+nmap t] :bn<cr>
 nmap <space> :nohlsearch<CR>
-nmap <F3> :below term<cr>
+nmap <F1> :below term<cr>
 nmap \t :below term<cr>
-nmap <F4> :below term python<cr>
+nmap <F2> :below term python<cr>
 nmap \y :below term python<cr>
 if(g:islinux==0)
     tnoremap ` <c-\><c-n><c-w>k
@@ -136,19 +135,38 @@ nmap <c-l> <c-w>l
 "-------search------
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 900
+let g:completor_completion_delay = 1000
 let g:completor_complete_options = 'menuone,noselect'
 
 
-"-------autorun------
+"--------- Ignore compiled files
+set wildmenu
+set wildmode=longest:list,full
+set wildignore=*.o,*~,*.pyc,*.class,*.out
+if has("win16") || has("win32")
+    set wildignore+=.git\*,.hg\*,.svn\*
+else
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+endif
+
+"-------auto------
+autocmd BufWritePost .vimrc source %
+autocmd FileType java set makeprg=javac\ %
+autocmd FileType c set makeprg=gcc\ %\ -o\ %<
+
 nmap <F8> :call FormatCode()<CR>
 nmap \F :call FormatCode()<CR>
+nmap <F6> :make<CR>
+nmap \b :make<CR>
 nmap <F5> :call Run()<CR>
 nmap \r :call Run()<CR>
+
 func! FormatCode()
     exec "w"
     if &filetype == "python"
@@ -156,8 +174,8 @@ func! FormatCode()
     endif
 endfunc
 func! Run()
-    exec "w"
     if &filetype == "python"
+        exec "w"
         if (g:iswindows)
             exec "below term python %"
         elseif(g:ismac)
@@ -167,19 +185,17 @@ func! Run()
         endif
     endif
     if &filetype=="sh"
+        exec "w"
         exec "!./%"
     endif
     if &filetype=="c"
-        exec "!gcc % -o %<"
-        exec "!./% <"
+        exec "!./%<"
+    endif
+    if &filetype=="java"
+        exec "below term java %<"
     endif
 endfunc
 
-"-------autocommands------
-augroup autosourcing
-	autocmd!
-	autocmd BufWritePost .vimrc source %
-augroup END
 
 "-------vim-plug------
 call plug#begin('~/.vim/plugged')
@@ -193,10 +209,7 @@ Plug 'honza/vim-snippets'
 Plug 'Yggdroot/LeaderF'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree', {'on':'NERDTreeToggle'}
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
-"Plug 'rust-lang/rust.vim'
 Plug 'justinmk/vim-sneak'
 call plug#end()
 "-------vim-plug------
@@ -210,6 +223,8 @@ call plug#end()
 
 "------indent line
 let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
 
 "------superTab
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -220,9 +235,9 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 map <c-n> :NERDTreeToggle<CR>
 
 "------ale
-let g:ale_linters = {'c': ['clang'],'python': ['pylint'], 'zsh': ['shell']}
+let g:ale_linters = {'c': ['gcc'],'python': ['pylint'],'java':['javac'],'bash': ['shell']}
 let g:ale_linters_explicit = 1
-let g:ale_completion_delay = 600
+let g:ale_completion_delay = 1000
 let g:ale_echo_delay = 20
 let g:ale_lint_delay = 600
 let g:ale_lint_on_text_changed = 'normal'

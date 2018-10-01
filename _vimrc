@@ -2,8 +2,8 @@
 set shortmess=atI
 set termencoding=utf-8
 set encoding=utf-8
-set nocompatible              " be iMproved, required
-set noerrorbells                "设置没有错误提示音
+set nocompatible
+set noerrorbells
 set novisualbell
 syntax enable
 set number
@@ -131,7 +131,6 @@ nmap <c-k> <c-w>k
 nmap <c-h> <c-w>h
 nmap <c-l> <c-w>l
 
-
 "-------search------
 set hlsearch
 set incsearch
@@ -148,8 +147,16 @@ augroup autosourcing
 	autocmd!
 	autocmd BufWritePost .vimrc source %
 augroup END
-autocmd FileType java set makeprg=javac\ %
-autocmd FileType c set makeprg=gcc\ %\ -o\ %<
+
+augroup makejava
+	autocmd!
+    autocmd FileType java set makeprg=javac\ %
+augroup END
+
+augroup makec
+	autocmd!
+    autocmd FileType c set makeprg=gcc\ %\ -o\ %<
+augroup END
 
 nmap <F8> :call FormatCode()<CR>
 nmap \F :call FormatCode()<CR>
@@ -186,6 +193,7 @@ func! Run()
         exec "below term java %<"
     endif
 endfunc
+"-------autorun------
 
 
 "-------vim-plug------
@@ -207,11 +215,6 @@ call plug#end()
 
 
 "--------------plugin_setting----------------------------------
-
-"------airline_setting
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline_powerline_fonts = 1
-
 "------indent line
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level=2

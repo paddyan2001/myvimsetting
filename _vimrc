@@ -144,17 +144,17 @@ let g:completor_complete_options = 'menuone,noselect'
 
 "-------autorun------
 augroup autosourcing
-	autocmd!
-	autocmd BufWritePost .vimrc source %
+    autocmd!
+    autocmd BufWritePost .vimrc source %
 augroup END
 
 augroup makejava
-	autocmd!
+    autocmd!
     autocmd FileType java set makeprg=javac\ %
 augroup END
 
 augroup makec
-	autocmd!
+    autocmd!
     autocmd FileType c set makeprg=gcc\ %\ -o\ %<
 augroup END
 

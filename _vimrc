@@ -15,8 +15,8 @@ set shiftwidth=4
 set autoindent
 set backspace =indent,eol,start
 set cot-=preview    "设置不显示函数属性buffer
-set cursorline      "设置行高亮
-set cursorcolumn    "设置列高亮
+"set cursorline      "设置行高亮
+"set cursorcolumn    "设置列高亮
 set nowrap          "设置不自动换行
 set showmatch       "高亮括号匹配
 set matchtime=2     "高亮括号时间是十分之n秒

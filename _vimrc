@@ -36,6 +36,10 @@ set history=600     "多少次历史操作
 set lazyredraw
 set magic
 set wildmenu
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 
 "-------os change------
 let g:iswindows=0
@@ -58,7 +62,7 @@ if (g:iswindows)
     set linespace=6 "6 8
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
-    autocmd GUIEnter * simalt ~x "启动最大化
+    "autocmd GUIEnter * simalt ~x "启动最大化
     let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe'
     cd ~\OneDrive\Code\
 elseif (g:ismac)
@@ -130,12 +134,6 @@ nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
 nmap <c-h> <c-w>h
 nmap <c-l> <c-w>l
-
-"-------search------
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u

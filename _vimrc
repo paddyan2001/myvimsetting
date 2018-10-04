@@ -1,5 +1,4 @@
 "-------basic setting------
-set shortmess=atI
 set termencoding=utf-8
 set encoding=utf-8
 set nocompatible
@@ -7,7 +6,7 @@ set noerrorbells
 set novisualbell
 syntax enable
 set number
-"set relativenumber
+set ruler
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -15,8 +14,6 @@ set shiftwidth=4
 set autoindent
 set backspace =indent,eol,start
 set cot-=preview    "设置不显示函数属性buffer
-"set cursorline      "设置行高亮
-"set cursorcolumn    "设置列高亮
 set nowrap          "设置不自动换行
 set showmatch       "高亮括号匹配
 set matchtime=2     "高亮括号时间是十分之n秒
@@ -30,9 +27,7 @@ set autoread
 set showtabline=2  "0,1,2显示标签栏
 set tabpagemax=15  "设置标签栏最大值
 set signcolumn=yes  "强制显示侧边栏
-"set autochdir       "自动切换到正在编辑的文件的目录
 set history=600     "多少次历史操作
-"set ruler
 set lazyredraw
 set magic
 set wildmenu

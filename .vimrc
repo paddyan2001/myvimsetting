@@ -89,12 +89,9 @@ nmap \vl :set background=light<cr>
 
 "-------keymapping------
 nmap ' :
-nmap \q :q<CR>
-nmap Q :qa!<CR>
 nmap = :tabclose<CR>
 nmap + :tabclose!<CR>
 nmap \v :tabedit ~/.vimrc<CR>
-nmap \w :w<CR>
 nmap \c :%s/\s\+$//e<cr>
 nmap - :bd<CR>
 nmap _ :bd!<CR>
@@ -110,40 +107,51 @@ nmap <C-n>  :tabedit<Space>
 nmap <C-c>  :tabclose<Space>
 nmap <C-m>  :tabm<Space>
 
-if(g:islinux==0)
+if(g:iswindows || g:ismac)
     tnoremap ` <c-\><c-n><c-w>k
     tnoremap `` <c-\><c-n>
     tnoremap <c-q> exit<cr>
     tnoremap <c-Q> exit()<cr>
     tnoremap <c-z> <c-z><cr>
     tnoremap <c-p> python<Space>
-elseif(g:iswindows)
+endif
+if(g:iswindows)
+    nmap <M-w> :w<CR>
+    nmap <M-q> :q<CR>
+    nmap <M-Q> :qa!<CR>
     nmap <M-j> <c-w>j
     nmap <M-k> <c-w>k
     nmap <M-h> <c-w>h
     nmap <M-l> <c-w>l
     nmap <M-p> :bp<cr>
     nmap <M-n> :bn<cr>
-    nmap <M-w> :cw<CR>
+    nmap <M-v> :cw<CR>
     nmap <M-c> :ccl<CR>
-elseif(g:ismac)
+endif
+if(g:ismac)
+    nmap <D-w> :w<CR>
+    nmap <D-q> :q<CR>
+    nmap <D-Q> :qa!<CR>
     nmap <D-j> <c-w>j
     nmap <D-k> <c-w>k
     nmap <D-h> <c-w>h
     nmap <D-l> <c-w>l
     nmap <D-p> :bp<cr>
     nmap <D-n> :bn<cr>
-    nmap <D-w> :cw<CR>
+    nmap <D-v> :cw<CR>
     nmap <D-c> :ccl<CR>
 endif
 if(islinux)
+    nmap <ESC>w :w<CR>
+    nmap <ESC>q :q<CR>
+    nmap <ESC>Q :qa!<CR>
     nmap <ESC>j <c-w>j
     nmap <ESC>k <c-w>k
     nmap <ESC>h <c-w>h
     nmap <ESC>l <c-w>l
     nmap <ESC>p :bp<cr>
     nmap <ESC>n :bn<cr>
-    nmap <ESC>w :cw<CR>
+    nmap <ESC>v :cw<CR>
     nmap <ESC>c :ccl<CR>
 endif
 
@@ -169,7 +177,7 @@ augroup makec
 augroup END
 
 nmap <F8> :call FormatCode()<CR>
-nmap \F :call FormatCode()<CR>
+nmap \f :call FormatCode()<CR>
 nmap <F6> :make<CR>
 nmap \b :make<CR>
 nmap <F5> :call Run()<CR>

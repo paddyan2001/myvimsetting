@@ -1,13 +1,12 @@
 "-------basic setting------
-set shortmess=atI
 set termencoding=utf-8
 set encoding=utf-8
-set nocompatible              " be iMproved, required
-set noerrorbells                "设置没有错误提示音
+set nocompatible
+set noerrorbells
 set novisualbell
 syntax enable
 set number
-"set relativenumber
+set ruler
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -15,13 +14,12 @@ set shiftwidth=4
 set autoindent
 set backspace =indent,eol,start
 set cot-=preview    "设置不显示函数属性buffer
-set cursorline      "设置行高亮
-set cursorcolumn    "设置列高亮
 set nowrap          "设置不自动换行
 set showmatch       "高亮括号匹配
 set matchtime=2     "高亮括号时间是十分之n秒
 set scrolloff=3     "光标移动到buffer的顶部和底部时保持3行距离
 set nobackup        "禁止生成临时文件
+set nowb
 set noswapfile      "禁止生成交换文件
 set autowriteall
 set modified
@@ -29,6 +27,14 @@ set autoread
 set showtabline=2  "0,1,2显示标签栏
 set tabpagemax=15  "设置标签栏最大值
 set signcolumn=yes  "强制显示侧边栏
+set history=600     "多少次历史操作
+set lazyredraw
+set magic
+set wildmenu
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 
 "-------os change------
 let g:iswindows=0
@@ -51,7 +57,7 @@ if (g:iswindows)
     set linespace=6 "6 8
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
-    autocmd GUIEnter * simalt ~x "启动最大化
+    "autocmd GUIEnter * simalt ~x "启动最大化
     let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe'
     cd ~\OneDrive\Code\
 elseif (g:ismac)
@@ -124,22 +130,26 @@ nmap <c-k> <c-w>k
 nmap <c-h> <c-w>h
 nmap <c-l> <c-w>l
 
-
-"-------search------
-set hlsearch
-set incsearch
-
-
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 1000
+let g:completor_completion_delay = 800
 let g:completor_complete_options = 'menuone,noselect'
 
+"-------autorun------
+augroup autosourcing
+    autocmd!
+    autocmd BufWritePost .vimrc source %
+augroup END
 
-"-------auto------
-autocmd BufWritePost .vimrc source %
-autocmd FileType java set makeprg=javac\ %
-autocmd FileType c set makeprg=gcc\ %\ -o\ %<
+augroup makejava
+    autocmd!
+    autocmd FileType java set makeprg=javac\ %
+augroup END
+
+augroup makec
+    autocmd!
+    autocmd FileType c set makeprg=gcc\ %\ -o\ %<
+augroup END
 
 nmap <F8> :call FormatCode()<CR>
 nmap \F :call FormatCode()<CR>
@@ -176,6 +186,7 @@ func! Run()
         exec "below term java %<"
     endif
 endfunc
+"-------autorun------
 
 
 "-------vim-plug------
@@ -197,11 +208,6 @@ call plug#end()
 
 
 "--------------plugin_setting----------------------------------
-
-"------airline_setting
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline_powerline_fonts = 1
-
 "------indent line
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level=2
@@ -218,9 +224,9 @@ map <c-n> :NERDTreeToggle<CR>
 "------ale
 let g:ale_linters = {'c': ['gcc'],'python': ['pylint'],'java':['javac'],'bash': ['shell']}
 let g:ale_linters_explicit = 1
-let g:ale_completion_delay = 1000
+let g:ale_completion_delay = 800
 let g:ale_echo_delay = 20
-let g:ale_lint_delay = 600
+let g:ale_lint_delay = 500
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 

@@ -26,7 +26,7 @@ set modified
 set autoread
 set showtabline=2  "0,1,2显示标签栏
 set tabpagemax=15  "设置标签栏最大值
-set signcolumn=yes  "强制显示侧边栏
+"set signcolumn=yes  "强制显示侧边栏
 set history=600     "多少次历史操作
 set lazyredraw
 set magic
@@ -57,7 +57,7 @@ if (g:iswindows)
     set linespace=6 "6 8
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
-    "autocmd GUIEnter * simalt ~x "启动最大化
+    autocmd GUIEnter * simalt ~x "启动最大化
     let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe'
     cd ~\OneDrive\Code\
 elseif (g:ismac)
@@ -93,42 +93,59 @@ nmap \q :q<CR>
 nmap Q :qa!<CR>
 nmap = :tabclose<CR>
 nmap + :tabclose!<CR>
-nmap \w :w<CR>
 nmap \v :tabedit ~/.vimrc<CR>
-nnoremap th  :tabfirst<CR>
-nnoremap tj  :tabnext<CR>
-nnoremap tk  :tabprev<CR>
-nnoremap tl  :tablast<CR>
-nnoremap to  :tabonly<CR>
-nnoremap tn  :tabedit<Space>
-nnoremap tc  :tabclose<Space>
-nnoremap tm  :tabm<Space>
-nnoremap tw  :cw<CR>
-nnoremap td  :ccl<CR>
+nmap \w :w<CR>
 nmap \c :%s/\s\+$//e<cr>
 nmap - :bd<CR>
 nmap _ :bd!<CR>
-nmap t[ :bp<cr>
-nmap t] :bn<cr>
 nmap <space> :nohlsearch<CR>
 nmap <F1> :below term<cr>
-nmap \t :below term<cr>
 nmap <F2> :below term python<cr>
-nmap \y :below term python<cr>
+nmap <C-h>  :tabfirst<CR>
+nmap <C-j>  :tabnext<CR>
+nmap <C-k>  :tabprev<CR>
+nmap <C-l>  :tablast<CR>
+nmap <C-o>  :tabonly<CR>
+nmap <C-n>  :tabedit<Space>
+nmap <C-c>  :tabclose<Space>
+nmap <C-m>  :tabm<Space>
+
 if(g:islinux==0)
     tnoremap ` <c-\><c-n><c-w>k
     tnoremap `` <c-\><c-n>
     tnoremap <c-q> exit<cr>
     tnoremap <c-Q> exit()<cr>
     tnoremap <c-z> <c-z><cr>
-    tnoremap <c-p> python
+    tnoremap <c-p> python<Space>
+elseif(g:iswindows)
+    nmap <M-j> <c-w>j
+    nmap <M-k> <c-w>k
+    nmap <M-h> <c-w>h
+    nmap <M-l> <c-w>l
+    nmap <M-p> :bp<cr>
+    nmap <M-n> :bn<cr>
+    nmap <M-w> :cw<CR>
+    nmap <M-c> :ccl<CR>
+elseif(g:ismac)
+    nmap <D-j> <c-w>j
+    nmap <D-k> <c-w>k
+    nmap <D-h> <c-w>h
+    nmap <D-l> <c-w>l
+    nmap <D-p> :bp<cr>
+    nmap <D-n> :bn<cr>
+    nmap <D-w> :cw<CR>
+    nmap <D-c> :ccl<CR>
 endif
-
-"-------split managerment------
-nmap <c-j> <c-w>j
-nmap <c-k> <c-w>k
-nmap <c-h> <c-w>h
-nmap <c-l> <c-w>l
+if(islinux)
+    nmap <ESC>j <c-w>j
+    nmap <ESC>k <c-w>k
+    nmap <ESC>h <c-w>h
+    nmap <ESC>l <c-w>l
+    nmap <ESC>p :bp<cr>
+    nmap <ESC>n :bn<cr>
+    nmap <ESC>w :cw<CR>
+    nmap <ESC>c :ccl<CR>
+endif
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u

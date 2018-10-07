@@ -105,8 +105,6 @@ nmap <C-k>  :tabprev<CR>
 nmap <C-l>  :tablast<CR>
 nmap <C-o>  :tabonly<CR>
 nmap <C-n>  :tabedit<Space>
-nmap <C-c>  :tabclose<Space>
-nmap <C-m>  :tabm<Space>
 
 if(g:iswindows)
     set winaltkey=no

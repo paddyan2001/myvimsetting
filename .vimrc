@@ -36,6 +36,7 @@ set incsearch
 set ignorecase
 set smartcase
 
+
 "-------os change------
 let g:iswindows=0
 let g:ismac=0
@@ -54,7 +55,7 @@ endif
 
 "set for windows
 if (g:iswindows)
-    set linespace=6 "6 8
+    set linespace=8 "6 8
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
@@ -104,8 +105,10 @@ nmap <C-k>  :tabprev<CR>
 nmap <C-l>  :tablast<CR>
 nmap <C-o>  :tabonly<CR>
 nmap <C-n>  :tabedit<Space>
-nmap <C-c>  :tabclose<Space>
-nmap <C-m>  :tabm<Space>
+
+if(g:ismac)
+    set macmeta
+endif
 
 if(g:iswindows || g:ismac)
     tnoremap ` <c-\><c-n><c-w>k
@@ -114,8 +117,6 @@ if(g:iswindows || g:ismac)
     tnoremap <c-Q> exit()<cr>
     tnoremap <c-z> <c-z><cr>
     tnoremap <c-p> python<Space>
-endif
-if(g:iswindows)
     nmap <M-w> :w<CR>
     nmap <M-q> :q<CR>
     nmap <M-Q> :qa!<CR>
@@ -127,19 +128,6 @@ if(g:iswindows)
     nmap <M-n> :bn<cr>
     nmap <M-v> :cw<CR>
     nmap <M-c> :ccl<CR>
-endif
-if(g:ismac)
-    nmap <D-w> :w<CR>
-    nmap <D-q> :q<CR>
-    nmap <D-Q> :qa!<CR>
-    nmap <D-j> <c-w>j
-    nmap <D-k> <c-w>k
-    nmap <D-h> <c-w>h
-    nmap <D-l> <c-w>l
-    nmap <D-p> :bp<cr>
-    nmap <D-n> :bn<cr>
-    nmap <D-v> :cw<CR>
-    nmap <D-c> :ccl<CR>
 endif
 if(islinux)
     nmap <ESC>w :w<CR>

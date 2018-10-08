@@ -232,7 +232,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 "------NERDTree
 "autocmd vimenter * NERDTree
-map <c-n> :NERDTreeToggle<CR>
+map <c-t> :NERDTreeToggle<CR>
 
 "------ale
 let g:ale_linters = {'c': ['gcc'],'python': ['pylint'],'java':['javac'],'bash': ['shell']}

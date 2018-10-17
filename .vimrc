@@ -55,7 +55,7 @@ endif
 
 "set for windows
 if (g:iswindows)
-    set linespace=8 "6 8
+    set linespace=6 "6 8
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
@@ -105,6 +105,10 @@ nmap <C-k>  :tabprev<CR>
 nmap <C-l>  :tablast<CR>
 nmap <C-o>  :tabonly<CR>
 nmap <C-n>  :tabedit<Space>
+nmap <F8> :call FormatCode()<CR>
+nmap <F6> :make<CR>
+nmap <F5> :call Run()<CR>
+
 
 if(g:ismac)
     set macmeta
@@ -128,6 +132,9 @@ if(g:iswindows || g:ismac)
     nmap <M-n> :bn<cr>
     nmap <M-v> :cw<CR>
     nmap <M-c> :ccl<CR>
+    nmap <M-f> :call FormatCode()<CR>
+    nmap <M-b> :make<CR>
+    nmap <M-r> :call Run()<CR>
 endif
 if(islinux)
     nmap <ESC>w :w<CR>
@@ -141,6 +148,9 @@ if(islinux)
     nmap <ESC>n :bn<cr>
     nmap <ESC>v :cw<CR>
     nmap <ESC>c :ccl<CR>
+    nmap <ESC>f :call FormatCode()<CR>
+    nmap <ESC>b :make<CR>
+    nmap <ESC>r :call Run()<CR>
 endif
 
 "-------autocomplete and completor setting------
@@ -163,13 +173,6 @@ augroup makec
     autocmd!
     autocmd FileType c set makeprg=gcc\ %\ -o\ %<
 augroup END
-
-nmap <F8> :call FormatCode()<CR>
-nmap \f :call FormatCode()<CR>
-nmap <F6> :make<CR>
-nmap \b :make<CR>
-nmap <F5> :call Run()<CR>
-nmap \r :call Run()<CR>
 
 func! FormatCode()
     exec "w"

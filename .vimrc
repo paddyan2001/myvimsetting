@@ -219,6 +219,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree', {'on':'NERDTreeToggle'}
 Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
+Plug 'fatih/vim-go',{'do': ':GoUpdateBinaries'}
 call plug#end()
 "-------vim-plug------
 

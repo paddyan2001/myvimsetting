@@ -55,7 +55,7 @@ endif
 
 "set for windows
 if (g:iswindows)
-    set linespace=6 "6 8
+    set linespace=8 "6 8
     set guifont=Hack:h12 "Consolas Fira_Code Hack
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
@@ -155,7 +155,7 @@ endif
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 800
+let g:completor_completion_delay = 350
 let g:completor_complete_options = 'menuone,noselect'
 
 "-------autorun------

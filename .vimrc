@@ -155,7 +155,7 @@ endif
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 350
+let g:completor_completion_delay = 650
 let g:completor_complete_options = 'menuone,noselect'
 
 "-------autorun------

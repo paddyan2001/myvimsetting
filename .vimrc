@@ -60,7 +60,7 @@ if (g:iswindows)
     set renderoptions=type:directx,renmode:5,taamode:1 "启用directx 渲染
     autocmd GUIEnter * simalt ~x "启动最大化
     let g:completor_python_binary = '~/AppData/Local/Programs/Python/Python36/python.exe'
-    let g:completor_gocode_binary = '~/go/bin/gocode.exe'
+    "let g:completor_gocode_binary = '~/go/bin/gocode.exe'
     cd ~\OneDrive\Code\
 elseif (g:ismac)
     cd ~/code/
@@ -220,7 +220,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree', {'on':'NERDTreeToggle'}
 Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
-Plug 'fatih/vim-go',{'do': ':GoUpdateBinaries'}
+"Plug 'fatih/vim-go',{'do': ':GoUpdateBinaries'}
 call plug#end()
 "-------vim-plug------
 

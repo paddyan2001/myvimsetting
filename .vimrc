@@ -156,7 +156,7 @@ endif
 
 "-------autocomplete and completor setting------
 set complete=.,w,b,u
-let g:completor_completion_delay = 1000
+let g:completor_completion_delay = 800
 let g:completor_complete_options = 'menuone,noselect'
 
 "-------autorun------
@@ -243,7 +243,7 @@ map <c-t> :NERDTreeToggle<CR>
 let g:ale_linters = {'c': ['gcc'],'python': ['pylint'],'java':['javac'],'bash': ['shell']}
 let g:ale_linters_explicit = 1
 let g:ale_completion_delay = 800
-let g:ale_echo_delay = 20
+let g:ale_echo_delay = 200
 let g:ale_lint_delay = 500
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1

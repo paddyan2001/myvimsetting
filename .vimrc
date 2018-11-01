@@ -250,5 +250,9 @@ let g:ale_lint_on_insert_leave = 1
 
 "------LeaderF
 let g:Lf_ShortcutF = '<leader>\'
+let g:Lf_WildIgnore = {
+        \ 'dir': ['.svn','.git','.hg','.*'],
+        \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+        \}
 
 "--------------plugin_setting---------------------------------

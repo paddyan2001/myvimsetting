@@ -91,6 +91,7 @@ nmap \vl :set background=light<cr>
 
 "-------keymapping------
 nmap ' :
+imap ` <C-e>
 nmap = :tabclose<CR>
 nmap + :tabclose!<CR>
 nmap \v :tabedit ~/.vimrc<CR>

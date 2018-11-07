@@ -106,7 +106,7 @@ nmap <C-j>  :tabnext<CR>
 nmap <C-k>  :tabprev<CR>
 nmap <C-l>  :tablast<CR>
 nmap <C-o>  :tabonly<CR>
-nmap <C-n>  :tabedit<Space>
+nmap <C-t>  :tabedit<Space>
 nmap <F8> :call FormatCode()<CR>
 nmap <F6> :make<CR>
 nmap <F5> :call Run()<CR>
@@ -237,7 +237,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 "------NERDTree
 "autocmd vimenter * NERDTree
-map <c-t> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 
 "------ale
 let g:ale_linters = {'c': ['gcc'],'python': ['pylint'],'java':['javac'],'bash': ['shell']}
